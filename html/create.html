@@ -11,16 +11,44 @@
 
     <!-- Loading Flat UI -->
     <link href="../css/flat-ui.css" rel="stylesheet">
+<style>
+.navbar-inverse .nav > .navtrainer a {
+	color: #fff;
+}
+.navbar-inverse .nav > .navtrainer a:hover{
+	color: #fff;
+}
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-    <![endif]-->
+
+
+</style>
   </head>
   
   <body>
   
-  
+	<div class="header">
+		<div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+              <div class="container">
+                  <ul class="nav">
+                    <li><a href="#">Easy Trainer</a></li>
+                  </ul>
+                  <ul class="nav pull-right">
+                  	<li class="active">
+                      <a href="#">Athletes</a>
+                      <ul>
+                        <li><a href="#">Josh Dunaway</a></li>
+                        <li><a href="#">Kobe Bryant</a></li>
+                        <li><a href="#">Danilo Gallinari</a></li>
+                      </ul> <!-- /Sub menu -->
+                    </li>
+                    <li class="navtrainer"><a>Trainer Joe</a></li>
+                    <li><a href="#">Logout</a></li>
+                  </ul>
+              </div>
+            </div>
+        </div>
+	</div>
   
    <!-- Load JS here for greater good =============================-->
 	<script src="../js/flatui/jquery-1.8.2.min.js"></script>
