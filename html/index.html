@@ -14,6 +14,133 @@
 	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<link href="../css/base.css" rel="stylesheet" type="text/css" />
 	<link href="../css/index.css" rel="stylesheet" type="text/css" />
+<style>
+.exercise-select {
+	min-height: 400px;
+	padding: 0px;
+}
+.exercise:hover {
+	cursor: pointer;
+}
+.exercise {
+	background: none;
+	height: 70px;
+	border-bottom: 1px solid #ccc;
+	border-top:1px solid white;	
+	padding-left: 15px;
+}
+.exercise h5 {
+	margin: 10px 0 5px 0;
+}
+.exercise p {
+	color: #555;
+	font-size: 13px;
+}
+.choose-exercise:hover {
+	cursor: pointer;
+}
+.choose-exercise {
+	background: #555;
+	margin-top: -10px;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	height: 40px;
+	line-height: 40px;
+}
+.choose-exercise h6 {
+	font-size: 14px;
+	color: #fff;
+	line-height: 40px;
+	padding-left: 10px;
+}
+.choose-exercise h6 i {
+	margin-left: 20px;
+}
+.selectnewexercise {
+	display: none;
+}
+.newexercise {
+	border-bottom: 1px solid #ccc;
+	border-top:1px solid white;	
+	padding-left: 15px;
+}
+.exercise:hover, .newexercise:hover {
+	background: #eee;
+	cursor: pointer;
+}
+
+.chart {
+	width: 785px;
+	margin-left: 270px;
+	margin-right: 20px;
+	min-width: 400px;
+	padding: 0px;
+	min-height: 400px;
+}
+.chart-header {
+	background: #555;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+	height: 40px;
+}
+.title {
+	border-right: 1px solid #ccc;
+	width: 150px;
+	color: white;
+	font-weight: 800;
+	line-height: 40px;
+	text-align: center;
+}
+.chart-row {
+	height: 60px;
+	border-bottom: 1px solid #ccc;
+	border-top:1px solid white;	
+}
+.chart-header > div {
+	float: left;
+}
+.day {
+	color: white;
+	width: 115px;
+	border-right: 1px solid #ccc;
+}
+.day p {
+	line-height: 20px;
+	margin: 0;
+	font-size: 12px;
+	font-weight: 900;
+	text-align: center;
+}
+.leftarrow, .rightarrow {
+	padding: 5px 5px 0 5px;
+	color: white;
+	font-size: 50px;
+	border-right: 1px solid #ccc;
+	height: 35px;
+}
+.rightarrow {
+	border-right: none;
+}
+.arrow:hover {
+	cursor: pointer;
+}
+</style>
+
+<script>
+$(document).ready(function() {
+	$('.choose-exercise').click(function() {
+		if ($('.selectnewexercise').is(':visible')) {
+			$('.selectnewexercise').slideToggle('slow',function() {
+				$('.exercise-container').slideToggle('slow');
+			});
+		} else {
+			$('.exercise-container').slideToggle('slow',function() {
+				$('.selectnewexercise').slideToggle('slow');
+			});
+		}
+	});
+});
+</script>
 </head>
 
 <body>
@@ -21,29 +148,107 @@
 	<div class="header">
 		<div class="navbar">
 			<div class="navbar-inner">
-				<a class="brand" href="#">Title</a>
-				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
+				<a class="brand" href="#">Easy Trainer</a>
+				<ul class="nav pull-right">
+					 <li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Athletes
+						<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href='#'>Kobe Bryant</a></li>
+							<li><a href='#'>John Wenzel</a></li>
+							<li><a href='#'>Add New Athlete</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Sign Out</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	
-	<div class="maincontainer">
-		<img class="brospic" src="../img/bros1.png"/>
-		<img class="brospic2" src="../img/bros2.png"/>
-		<img class="axa" src="../img/axa.png"/>
+	<div class="exercise-select well span3">
+		<div class="choose-exercise">
+			<h6> Select Different Exercise<i class="icon-search icon-white"></i></h6>
+		</div>
+		<div class="selectnewexercise">
+			<div class="newexercise">
+				<h5>Knees</h5>
+			</div>
+			<div class="newexercise">
+				<h5>Ankles</h5>
+			</div>
+			<div class="newexercise">
+				<h5>Hips</h5>
+			</div>
+			<div class="newexercise">
+				<h5>Back</h5>
+			</div>
+			<div class="newexercise">
+				<h5>Shoulder</h5>
+			</div>
+		</div>
+		<div class="exercise-container">
+			<div class="exercise">
+				<h5> Reverse Hamstring Curls </h5>
+				<p> Difficulty: <span>Moderate</span></p>
+			</div>
+			<div class="exercise">
+				<h5> One-Legged Squats </h5>
+				<p> Difficulty: <span>Challenging</span></p>
+			</div>
+			<div class="exercise">
+				<h5>Calf Raises </h5>
+				<p> Difficulty: <span>Moderate</span></p>
+			</div>
+			<div class="exercise">
+				<h5> Lunges </h5>
+				<p> Difficulty: <span>Easy</span></p>
+			</div>
+			<div class="exercise">
+				<h5>Side Squats </h5>
+				<p> Difficulty: <span>Hard</span></p>
+			</div>
+		</div>
 	</div>
 
-<div class="footer_container">
-	<img src="../img/shadow.png"/>
-	<div class="footer">
-		<p>Lambda Zeta Chapter of Lambda Chi Alpha &#8901; 99 Bay State Road Boston, MA &#8901; Design by <a href="http://www.mitchellkates.com">Mitchell Kates</a></p>
+	<div class="chart well">
+		<div class="chart-header">
+			<div class='title'> Exercise </div>
+			<div class='leftarrow arrow'> &lsaquo;</div>
+			<div class='day'>
+				<p>Wednesday</p>
+				<p> April 20th</p>
+			</div>
+			<div class='day'>
+				<p>Thursday</p>
+				<p> April 21st</p>
+			</div>
+			<div class='day'>
+				<p>Friday</p>
+				<p> April 22nd</p>
+			</div>
+			<div class='day'>
+				<p>Saturday</p>
+				<p> April 23rd</p>
+			</div>
+			<div class='day'>
+				<p>Monday</p>
+				<p> April 24th</p>
+			</div>
+			<div class='rightarrow arrow'> &rsaquo;</div>
+		</div>
+		<div class='chart-row'>
+			<div class='chart-row'>
+				<div class='exercise-title'>
+					Reverse Hamstring Curls
+				</div>
+			</div>
+			<div class='chart-row'>
+				
+			</div>
+		</div>
 	</div>
-</div>
-
 
 </body>
 </html>
