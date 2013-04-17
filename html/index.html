@@ -9,21 +9,44 @@
 	<!--Javascript-->
     <script src="../js/jquery.js" type="text/javascript" ></script>
     <script src="../js/bootstrap.min.js" type="text/javascript" ></script>
-    
+	<script src="../js/jquery-ui.js"></script>
     <!--CSS-->
 	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<link href="../css/base.css" rel="stylesheet" type="text/css" />
 	<link href="../css/index.css" rel="stylesheet" type="text/css" />
 <style>
+body {
+	background: url("http://subtlepatterns.com/patterns/grey_wash_wall.png");
+}
+.pull-right {
+	margin-top: 5px;
+}
+.clear {
+	clear:both;
+}
+.footer {
+	margin: 15px auto;
+	text-align: center;
+	color: #ddd;
+}
+.navbar-contain {
+	width: 1050px;
+	margin: 0 auto;
+}
+.main-container {
+	width: 1060px;
+	margin: 0 auto;
+}
 .exercise-select {
 	min-height: 400px;
 	padding: 0px;
+	background: white;
 }
 .exercise:hover {
 	cursor: pointer;
 }
 .exercise {
-	background: none;
+	background: #f5f5f5;
 	height: 70px;
 	border-bottom: 1px solid #ccc;
 	border-top:1px solid white;	
@@ -38,31 +61,36 @@
 }
 .choose-exercise:hover {
 	cursor: pointer;
+	color: #eee;
 }
 .choose-exercise {
-	background: #555;
+	color: white;
 	margin-top: -10px;
 	border-top-right-radius: 4px;
 	border-top-left-radius: 4px;
 	height: 40px;
 	line-height: 40px;
+	border-bottom:1px solid white;
 }
 .choose-exercise h6 {
 	font-size: 14px;
-	color: #fff;
 	line-height: 40px;
 	padding-left: 10px;
 }
 .choose-exercise h6 i {
-	margin-left: 20px;
+	margin-left: 10px;
 }
 .selectnewexercise {
+	display: block;
+}
+.exercise-container {
 	display: none;
 }
 .newexercise {
 	border-bottom: 1px solid #ccc;
 	border-top:1px solid white;	
 	padding-left: 15px;
+	background: #f5f5f5;
 }
 .exercise:hover, .newexercise:hover {
 	background: #eee;
@@ -71,30 +99,40 @@
 
 .chart {
 	width: 785px;
-	margin-left: 270px;
+	float: left;
+	margin-left: 10px;
 	margin-right: 20px;
 	min-width: 400px;
 	padding: 0px;
 	min-height: 400px;
+	background: white;
 }
 .chart-header {
-	background: #555;
 	border-top-right-radius: 4px;
 	border-top-left-radius: 4px;
 	height: 40px;
+	border-bottom:1px solid white;
+}
+.gradientbg {
+	background-image: -ms-linear-gradient(top, #00ADF7 0%, #00405E 100%);
+	background-image: -moz-linear-gradient(top, #00ADF7 0%, #00405E 100%);
+	background-image: -o-linear-gradient(top, #00ADF7 0%, #00405E 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #00ADF7), color-stop(1, #00405E));
+	background-image: -webkit-linear-gradient(top, #00ADF7 0%, #00405E 100%);
+	background-image: linear-gradient(to bottom, #00ADF7 0%, #00405E 100%);
 }
 .title {
-	border-right: 1px solid #ccc;
-	width: 150px;
+	width: 135px;
 	color: white;
 	font-weight: 800;
 	line-height: 40px;
-	text-align: center;
+	padding-left: 15px;
+	border-right:1px solid #ccc;
 }
 .chart-row {
 	height: 60px;
 	border-bottom: 1px solid #ccc;
-	border-top:1px solid white;	
+	background: #f4f4f4;
 }
 .chart-header > div {
 	float: left;
@@ -111,144 +149,347 @@
 	font-weight: 900;
 	text-align: center;
 }
-.leftarrow, .rightarrow {
-	padding: 5px 5px 0 5px;
-	color: white;
-	font-size: 50px;
+
+.exercise-title {
+	float: left;
+	width: 125px;
 	border-right: 1px solid #ccc;
-	height: 35px;
+	height: 50px;
+	line-height: 20px;
+	padding-left: 15px;
+	padding-right: 10px;
+	padding-top: 10px;
+	font-weight: 800;
 }
-.rightarrow {
-	border-right: none;
+.setsrep {
+	float: left;
+	width: 115px;
+	border-right:1px solid #ccc;
+	text-align: center;
+	font-size: 16px;
+	line-height: 60px;
+	height: 60px;
 }
-.arrow:hover {
+.odd {	
+	background: #ddd;
+}
+.setsrep:hover {
+	background: #ccc;
 	cursor: pointer;
+}
+.noborder {
+	border: none;
+}
+.delete {
+	line-height: 60px;
+	text-align: center;
+	font-weight: 900;
+	font-size: 16px;
+}
+.delete:hover {
+	color: red;
+	cursor:pointer;
+}
+.ui-state-hover {
+	background: black;
+}
+.drophere {
+	width: 785px;
+	height: 60px;
+	background: #333;
+	padding-top: 5px;
+	line-height: 60px;
+	color: #ddd;
+}
+.drophere h1 {
+	color: white;
+	padding: 0px 0 0 0;
+	text-align: center;
+}
+.chart-row {
+	z-index: 0;
+	width: 785px;
+	height: 60px;
+}
+.ui-state-highlight {
+	width: 785px;
+	height: 60px;
+	background: #bbb;
+}
+.change {
+	width: 20px;
+}
+.logo {
+	width: 210px;
 }
 </style>
 
 <script>
+
+//**********************************
+//*******Exercise Object ***********
+//**********************************
+function exerciseobj(name,difficulty,bodyareas) {
+	this.name = name;
+	this.difficulty = difficulty;
+	this.bodyarea = bodyareas;
+	this.included = false;
+}
+
+//**********************************
+//**Generate Exercises**************
+//**********************************
+
+var type;
+var exercises = [];
+exercises.push(new exerciseobj('Reverse Hamstring Curls','Easy',['Knee','Hamstring']));
+exercises.push(new exerciseobj('One-Legged Squats','Easy',['Knee','Quad']));
+exercises.push(new exerciseobj('Calf Raises','Easy',['Calf']));
+exercises.push(new exerciseobj('Lunges','Easy',['Knee','Quad','Hamstring']));
+exercises.push(new exerciseobj('Side Squats','Easy',['Knee','Quad']));
+exercises.push(new exerciseobj('Clean and Jerk','Easy',['Quad','Shoulder']));
+exercises.push(new exerciseobj('Ankle Rolls','Easy',['Ankle','Foot']));
+exercises.push(new exerciseobj('Quadricep Stretch','Easy',['Knee','Quad']));
+
+
+//**********************************
+//**Add All Exercises to List*******
+//**********************************
+$(document).ready(function() {	
+	for (var a=0;a < exercises.length; a++) {
+		b = exercises[a];
+		var container = $('.exercise-container');
+		var divcontent = $('<div class="exercise exercisedrag"><h5>'+b.name+'</h5><p> Difficulty: <span>'+b.difficulty+'</span></p>');
+		container.append(divcontent);
+	};
+});
+
+var drawExercises = function(area) {
+	$('.exercise-container').empty();
+	for (var a=0;a < exercises.length; a++) {
+		b = exercises[a];
+		for (var c=0;c < b.bodyarea.length; c++) {
+			if (b.bodyarea[c] === area && b.included === false) {
+				var container = $('.exercise-container');
+				var divcontent = $('<div class="exercise exercisedrag"><h5>'+b.name+'</h5><p> Difficulty: <span>'+b.difficulty+'</span></p>');
+				container.append(divcontent);
+			}
+		}
+	};
+	chartfunctionality();
+}
+
+//**********************************
+//****Sidebar Functionality*********
+//**********************************
+
 $(document).ready(function() {
 	$('.choose-exercise').click(function() {
-		if ($('.selectnewexercise').is(':visible')) {
-			$('.selectnewexercise').slideToggle('slow',function() {
-				$('.exercise-container').slideToggle('slow');
-			});
-		} else {
-			$('.exercise-container').slideToggle('slow',function() {
-				$('.selectnewexercise').slideToggle('slow');
-			});
-		}
+		switchviews();
+	});
+	chartfunctionality();
+	
+	$('.newexercise').click(function() {
+		var area = $(this).children().html();
+		type = area;
+		var sidebar_exercises = [];
+		$('.exercise-container').empty();
+		drawExercises(type);
+		switchviews();
+		chartfunctionality();
 	});
 });
+
+var switchviews = function() {
+	if ($('.selectnewexercise').is(':visible')) {
+		$('.selectnewexercise').slideToggle('slow',function() {
+			$('.exercise-container').slideToggle('slow');
+		});
+	} else {
+		$('.exercise-container').slideToggle('slow',function() {
+			$('.selectnewexercise').slideToggle('slow');
+		});
+	}
+}
+
+//**********************************
+//**When exercise dropped into chart***
+//**********************************
+var addExercise = function(handle) {
+	var header = $(handle).children('h5').html();
+	var title = $("<div class='exercise-title'>"+header+"</div>");
+	var row = $("<div class='chart-row'></div>");
+	var deletediv = $("<div class='delete'>x</div>");
+	row.append(title);
+	for (var a=0; a < 5; a++){
+		var columns = $("<div class='exercise1 setsrep'>3 x 15</div>");
+		row.append(columns);
+	}
+	row.append(deletediv);
+	$('.chart-body').prepend(row);
+	chartfunctionality();
+}
+
+
+//**********************************
+//***Chart Functionality************
+//**********************************
+var chartfunctionality = function() {
+	//Implement draggable
+	$( ".exercisedrag" ).draggable({
+		revert: "invalid",
+		drag: function() {
+			$('.drophere').css('display','block');
+		},
+		stop: function() {
+			$('.drophere').css('display','none');
+		},
+	});
+	
+	//Implement droppable
+	 $( ".droppable" ).droppable({
+		drop: function( event, ui ) {
+			addExercise(ui.draggable);
+			var name = $(ui.draggable).children('h5').html();
+			for (var a=0;a < exercises.length; a++) {
+				if (exercises[a].name === name) {
+					exercises[a].included = true;
+				}
+			}
+			$(ui.draggable).remove();
+			$('.drophere').css('display','none');
+		}
+	});
+	
+	//Delete functionality
+	$('.delete').unbind('click');
+	$('.delete').click(function() {
+		$(this).parent().slideToggle();
+		var name = $($(this).parent().children()[0]).html();
+		for (var a=0;a < exercises.length; a++) {
+			if (exercises[a].name === name) {
+				exercises[a].included = false;
+			}
+		}
+		drawExercises(type);
+		
+	});
+	$('.setsrep').unbind('click');
+	$('.setsrep').click(function() {
+		if ($(this).children().length > 0) {
+		
+		} else {
+			var stringval = $(this).html();
+			stringval = stringval.split(' x ');
+			$(this).addClass('editing');
+			$(this).empty();
+			var input1 = $('<input type="text" class="sets change">');
+			var input2 = $('<input type="text" class="reps change" >');
+			input1.val(stringval[0]);
+			input2.val(stringval[1]);
+			$(this).append(input1);
+			$(this).append(' x ');
+			$(this).append(input2);
+		}
+		$(this).parent().mouseleave(function() {
+			var handler = $(this).children('.editing');
+			var children = $(handler).children();
+			$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
+			$(handler).removeClass('editing');
+		});
+	}); 
+}
+
 </script>
 </head>
 
 <body>
-
 	<div class="header">
 		<div class="navbar">
 			<div class="navbar-inner">
-				<a class="brand" href="#">Easy Trainer</a>
-				<ul class="nav pull-right">
-					 <li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						Athletes
-						<b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href='#'>Kobe Bryant</a></li>
-							<li><a href='#'>John Wenzel</a></li>
-							<li><a href='#'>Add New Athlete</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Sign Out</a></li>
-				</ul>
+				<div class="navbar-contain">
+					<a class="brand" href="#"><img class='logo' src="../img/prod/logo.png"/></a>
+					<ul class="nav pull-right">
+						 <li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							Athletes
+							<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href='#'>Kobe Bryant</a></li>
+								<li><a href='#'>John Wenzel</a></li>
+								<li><a href='#'>Add New Athlete</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Sign Out</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 	
-	<div class="exercise-select well span3">
-		<div class="choose-exercise">
-			<h6> Select Different Exercise<i class="icon-search icon-white"></i></h6>
+	<div class="main-container">
+		<div class="exercise-select well span3">
+		<div class="choose-exercise gradientbg">
+			<h6> Select Different Body Area<i class="icon-search icon-white"></i></h6>
 		</div>
 		<div class="selectnewexercise">
 			<div class="newexercise">
-				<h5>Knees</h5>
+				<h5>Knee</h5>
 			</div>
 			<div class="newexercise">
-				<h5>Ankles</h5>
+				<h5>Quad</h5>
 			</div>
 			<div class="newexercise">
-				<h5>Hips</h5>
-			</div>
-			<div class="newexercise">
-				<h5>Back</h5>
+				<h5>Ankle</h5>
 			</div>
 			<div class="newexercise">
 				<h5>Shoulder</h5>
 			</div>
+			<div class="newexercise">
+				<h5>Calf</h5>
+			</div>
 		</div>
 		<div class="exercise-container">
-			<div class="exercise">
-				<h5> Reverse Hamstring Curls </h5>
-				<p> Difficulty: <span>Moderate</span></p>
-			</div>
-			<div class="exercise">
-				<h5> One-Legged Squats </h5>
-				<p> Difficulty: <span>Challenging</span></p>
-			</div>
-			<div class="exercise">
-				<h5>Calf Raises </h5>
-				<p> Difficulty: <span>Moderate</span></p>
-			</div>
-			<div class="exercise">
-				<h5> Lunges </h5>
-				<p> Difficulty: <span>Easy</span></p>
-			</div>
-			<div class="exercise">
-				<h5>Side Squats </h5>
-				<p> Difficulty: <span>Hard</span></p>
-			</div>
 		</div>
 	</div>
 
-	<div class="chart well">
-		<div class="chart-header">
+		<div class="chart well droppable">
+		<div class="chart-header gradientbg">
 			<div class='title'> Exercise </div>
-			<div class='leftarrow arrow'> &lsaquo;</div>
 			<div class='day'>
-				<p>Wednesday</p>
+				<p>Week 1</p>
 				<p> April 20th</p>
 			</div>
 			<div class='day'>
-				<p>Thursday</p>
+				<p>Week 2</p>
 				<p> April 21st</p>
 			</div>
 			<div class='day'>
-				<p>Friday</p>
+				<p>Week 3</p>
 				<p> April 22nd</p>
 			</div>
 			<div class='day'>
-				<p>Saturday</p>
+				<p>Week 4</p>
 				<p> April 23rd</p>
 			</div>
 			<div class='day'>
-				<p>Monday</p>
+				<p>Week 5</p>
 				<p> April 24th</p>
 			</div>
-			<div class='rightarrow arrow'> &rsaquo;</div>
 		</div>
-		<div class='chart-row'>
-			<div class='chart-row'>
-				<div class='exercise-title'>
-					Reverse Hamstring Curls
-				</div>
-			</div>
-			<div class='chart-row'>
-				
-			</div>
+		<div class="drophere">
+			<h1> Drop Exercises Here</h1>
+		</div>
+		<div class='chart-body'>
+		
 		</div>
 	</div>
+		<div class="clear"></div>
+	</div>
 
+	<div class="footer">
+		<p>Easy Trainer created by Mitchell Kates, Derek Vaughn, James Arana, and Asa Oines for UI Design and Implementation Spring 2013</p>
+	</div>
 </body>
 </html>
