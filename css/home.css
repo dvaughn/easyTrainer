@@ -1,0 +1,9 @@
+.thumbnail:hover {
+  border-color:blue;
+}
+.row {
+margin-left: -20px;
+*zoom: 1;
+
+margin-top: 50px;
+}
