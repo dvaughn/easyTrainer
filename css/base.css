@@ -1,0 +1,14 @@
+body {
+	background: url("http://subtlepatterns.com/patterns/grey_wash_wall.png");
+}
+.pull-right {
+	margin-top: 5px;
+}
+.clear {
+	clear:both;
+}
+.footer {
+	margin: 15px auto;
+	text-align: center;
+	color: #ddd;
+}

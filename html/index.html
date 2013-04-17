@@ -15,213 +15,19 @@
 	<link href="../css/base.css" rel="stylesheet" type="text/css" />
 	<link href="../css/index.css" rel="stylesheet" type="text/css" />
 <style>
-body {
-	background: url("http://subtlepatterns.com/patterns/grey_wash_wall.png");
-}
-.pull-right {
-	margin-top: 5px;
-}
-.clear {
-	clear:both;
-}
-.footer {
-	margin: 15px auto;
-	text-align: center;
-	color: #ddd;
-}
-.navbar-contain {
-	width: 1050px;
-	margin: 0 auto;
-}
-.main-container {
-	width: 1060px;
-	margin: 0 auto;
-}
-.exercise-select {
-	min-height: 400px;
-	padding: 0px;
+
+.profile {
+	width: 980px;
+	margin-left: 20px;
+	margin-bottom: 10px;
 	background: white;
 }
-.exercise:hover {
-	cursor: pointer;
+.profile .profilepic {
+	border: 3px solid #eee;
+	width: 195px;
 }
-.exercise {
-	background: #f5f5f5;
-	height: 70px;
-	border-bottom: 1px solid #ccc;
-	border-top:1px solid white;	
-	padding-left: 15px;
-}
-.exercise h5 {
-	margin: 10px 0 5px 0;
-}
-.exercise p {
-	color: #555;
-	font-size: 13px;
-}
-.choose-exercise:hover {
-	cursor: pointer;
-	color: #eee;
-}
-.choose-exercise {
-	color: white;
-	margin-top: -10px;
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
-	height: 40px;
-	line-height: 40px;
-	border-bottom:1px solid white;
-}
-.choose-exercise h6 {
-	font-size: 14px;
-	line-height: 40px;
-	padding-left: 10px;
-}
-.choose-exercise h6 i {
-	margin-left: 10px;
-}
-.selectnewexercise {
-	display: block;
-}
-.exercise-container {
-	display: none;
-}
-.newexercise {
-	border-bottom: 1px solid #ccc;
-	border-top:1px solid white;	
-	padding-left: 15px;
-	background: #f5f5f5;
-}
-.exercise:hover, .newexercise:hover {
-	background: #eee;
-	cursor: pointer;
-}
+.profile .profileinfo {
 
-.chart {
-	width: 785px;
-	float: left;
-	margin-left: 10px;
-	margin-right: 20px;
-	min-width: 400px;
-	padding: 0px;
-	min-height: 400px;
-	background: white;
-}
-.chart-header {
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
-	height: 40px;
-	border-bottom:1px solid white;
-}
-.gradientbg {
-	background-image: -ms-linear-gradient(top, #00ADF7 0%, #00405E 100%);
-	background-image: -moz-linear-gradient(top, #00ADF7 0%, #00405E 100%);
-	background-image: -o-linear-gradient(top, #00ADF7 0%, #00405E 100%);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #00ADF7), color-stop(1, #00405E));
-	background-image: -webkit-linear-gradient(top, #00ADF7 0%, #00405E 100%);
-	background-image: linear-gradient(to bottom, #00ADF7 0%, #00405E 100%);
-}
-.title {
-	width: 135px;
-	color: white;
-	font-weight: 800;
-	line-height: 40px;
-	padding-left: 15px;
-	border-right:1px solid #ccc;
-}
-.chart-row {
-	height: 60px;
-	border-bottom: 1px solid #ccc;
-	background: #f4f4f4;
-}
-.chart-header > div {
-	float: left;
-}
-.day {
-	color: white;
-	width: 115px;
-	border-right: 1px solid #ccc;
-}
-.day p {
-	line-height: 20px;
-	margin: 0;
-	font-size: 12px;
-	font-weight: 900;
-	text-align: center;
-}
-
-.exercise-title {
-	float: left;
-	width: 125px;
-	border-right: 1px solid #ccc;
-	height: 50px;
-	line-height: 20px;
-	padding-left: 15px;
-	padding-right: 10px;
-	padding-top: 10px;
-	font-weight: 800;
-}
-.setsrep {
-	float: left;
-	width: 115px;
-	border-right:1px solid #ccc;
-	text-align: center;
-	font-size: 16px;
-	line-height: 60px;
-	height: 60px;
-}
-.odd {	
-	background: #ddd;
-}
-.setsrep:hover {
-	background: #ccc;
-	cursor: pointer;
-}
-.noborder {
-	border: none;
-}
-.delete {
-	line-height: 60px;
-	text-align: center;
-	font-weight: 900;
-	font-size: 16px;
-}
-.delete:hover {
-	color: red;
-	cursor:pointer;
-}
-.ui-state-hover {
-	background: black;
-}
-.drophere {
-	width: 785px;
-	height: 60px;
-	background: #333;
-	padding-top: 5px;
-	line-height: 60px;
-	color: #ddd;
-}
-.drophere h1 {
-	color: white;
-	padding: 0px 0 0 0;
-	text-align: center;
-}
-.chart-row {
-	z-index: 0;
-	width: 785px;
-	height: 60px;
-}
-.ui-state-highlight {
-	width: 785px;
-	height: 60px;
-	background: #bbb;
-}
-.change {
-	width: 20px;
-}
-.logo {
-	width: 210px;
-}
 </style>
 
 <script>
@@ -429,6 +235,16 @@ var chartfunctionality = function() {
 	</div>
 	
 	<div class="main-container">
+		<div class="profile well">
+			<img class="profilepic" src="../img/prod/kobe.jpg"/>
+			<div clas="profileinfo">
+				<h2>Kobe Bryant</h2>
+				<h3> Men's Basketball</h3>
+				<h4> 6'7" 230lbs</h4>
+				<h4> Lower Merion, PA </h4>
+				<h5> Injury: Torn Achilles Tendon</h5>
+			</div>
+		</div>
 		<div class="exercise-select well span3">
 		<div class="choose-exercise gradientbg">
 			<h6> Select Different Body Area<i class="icon-search icon-white"></i></h6>
