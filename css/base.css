@@ -1,5 +1,5 @@
 body {
-	background: url("http://subtlepatterns.com/patterns/grey_wash_wall.png");
+	background: url("../img/prod/graybg.png");
 }
 .pull-right {
 	margin-top: 5px;
@@ -11,4 +11,8 @@ body {
 	margin: 15px auto;
 	text-align: center;
 	color: #ddd;
+}
+.navbar-inner {	
+	border-radius: 0px;
+	background: white;
 }
