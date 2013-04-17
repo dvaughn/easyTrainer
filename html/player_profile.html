@@ -18,24 +18,33 @@
 
 <body>
 
-	<div class="header">
-		<div class="navbar">
-			<div class="navbar-inner">
-				<a class="brand" href="#">Title</a>
-				<ul class="nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	
-	<div class="maincontainer">
+       <div class="header">
+                <div class="navbar">
+                        <div class="navbar-inner">
+                                <a class="brand" href="#">Easy Trainer</a>
+                                <ul class="nav pull-right">
+                                         <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                Athletes
+                                                <b class="caret"></b>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                        <li><a href='#'>Kobe Bryant</a></li>
+                                                        <li><a href='#'>John Wenzel</a></li>
+                                                        <li><a href='#'>Add New Athlete</a></li>
+                                                </ul>
+                                        </li>
+                                        <li><a href="#">Sign Out</a></li>
+                                </ul>
+                        </div>
+                </div>
+        </div>
+
+	<div style="text-align: center">
 		<div class="row">
 			<div class="row">
-			<div class="span3 offset2">
-				<img src="../../Desktop/harris.jpg"/>
+			<div class="span3 offset4">
+				<img src="../img/harris.jpg" class="img-rounded"/>
 			</div>
 			<div class="span6">
 				<h1 id="athlete_name">Big Show</h1>
@@ -49,23 +58,91 @@
 				<h3 id="htown" style="float:left">, hometown</h3>
 			</div>
 			<div class="span3">
-				<h3 id="injury">Injury</h3></br>
+				<div class="well">
+				<span class="label label-important" id="injury" style="font-size:22px; line-height:24px;" >Injury</span>
 				<h3 id="injury_date">date</h3></br>
-  					<button class="btn">Update</button>
-					<div style="width:50px;height:auto;display:inline-block"></div>
+<a href="#" class="btn danger" 
+            rel="update" 
+            data-original-title="New Injury Status" 
+            data-content="<div class='btn-group'>
+  <button class='btn btn-danger'>Action</button>
+  <button class='btn dropdown-toggle' data-toggle='dropdown'>
+    <span class='caret'></span>
+  </button>
+  <ul class='dropdown-menu'>
+    <!-- dropdown menu links -->
+  </ul>
+</div>
+
+
+
+<form>
+  <fieldset>
+    <legend>Legend</legend>
+    <label>Label name</label>
+    <input type='text' placeholder='Type something…'>
+    <span class='help-block'>Example block-level help text here.</span>
+    <label class='checkbox'>
+      <input type='checkbox'> Check me out
+    </label>
+    <button type='submit' class='btn'>Submit</button>
+  </fieldset>
+</form>
+
+
+"
+	    data-html="true"
+	    data-placement="bottom">Update</a>
+<script>
+  $("a[rel=update]").popover();
+</script>
+
+
+
+
+					<div style="width:10px;height:auto;display:inline-block"></div>
   					<button class="btn">Remove</button>
+				</div>
 			</div>
 			</div>
 		</div>
 		</br>
 		<div class="row">
-			<div class="span12 offset2">
-			<ul class="nav nav-tabs">
+			<div class="span12 offset4">
+			<ul id="profile-tab" class="nav nav-tabs">
   				<li class="active">
-    				<a href="#">Workout</a>
+    				<a href="#workout" data-toggle="tab">Workout</a>
   				</li>
-  				<li><a href="#">History</a></li>
+  				<li><a href="#history" data-toggle="tab">History</a></li>
 			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade active in" id="workout">
+  					<button class="btn">Create a Workout</button>
+              			</div>
+				<div class="tab-pane fade" id="history">
+					<table class="table table-hover">
+              				<thead>
+                				<tr>
+                  				<th>Type of Injury</th>
+                  				<th>Date of Injury</th>
+                  				<th>Date of Recovery</th>
+                				</tr>
+              				</thead>
+              				<tbody>
+                				<tr>
+                  				<td>Pulled Vagina</td>
+                  				<td>1/10/13</td>
+                  				<td>-</td>
+                				</tr>
+                				<tr>
+                  				<td>Sprained Ankle</td>
+                  				<td>3/3/13</td>
+                  				<td>3/23/13</td>
+                				</tr>
+              				</tbody>
+            				</table>
+				</div>
+			</div>
 			</div>
 		</div>
 	</div>
