@@ -8,7 +8,7 @@
     <!-- Loading Bootstrap -->
     <link href="../css/bootstrap.css" rel="stylesheet">
      <link href="../css/.css" rel="stylesheet">
-
+     <link href="../css/home.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
@@ -16,53 +16,92 @@
   </head>
   
   <body>
-   <ul class="thumbnails">
-     <li class="span5">
-       <div class="thumbnail"> 
-         <div style="float:left;">
-           <img src="../img/mitch.jpg" class="img-rounded">
-         </div>
-         <div style="float:left; padding: 8px;">
-           <h4>Mitchell Kates</h4>
-           <h6>Basketball (G)</h6>
-           <div class="alert alert-error">
-             Sprained ankle
+  <div id="CreateAthlete" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="CreateAthleteLabel" aria-hidden="false">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="CreateAthleteLabel">Registration Form </h3>
+    </div>
+    <div class="modal-body">
+      <p>
+        Penis
+      </p>
+    </div>
+  </div>
+	<div class="header">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="#">Easy Trainer</a>
+        <form class="navbar-search pull-left">
+          <input type="text" class="search-query" placeholder="Search">
+          <a href="#CreateAthlete" role="button"  class="btn" data-toggle="modal">Register</a>
+          <a href="#CreateAthlete" class="icon-plus-sign" data-toggle="modal"></a>
+        </form>
+				<ul class="nav pull-right">
+					 <li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Athletes
+						<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href='#'>Kobe Bryant</a></li>
+							<li><a href='#'>John Wenzel</a></li>
+							<li><a href='#'>Add New Athlete</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Sign Out</a></li>
+				</ul>
+			</div>
+		</div>
+	</div> 
+  <div class="row">
+    <div class="span3 offset1">
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        You have <strong>4</strong> workouts that require your attention.
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  <div class="well" style="padding:10px;">
+  <div class="row"></div>
+  <ul class="thumbnails">
+     <div class="row-fluid">
+       <li class="span4 offset1">
+         <div class="thumbnail"> 
+           <div style="float:left;">
+             <img src="../img/mitch.jpg" class="img-rounded">
            </div>
-         </div>
-         <div class="clearfix"></div>
-       </div>
-     </li>
-     <li class="span5">
-       <div class="thumbnail"> 
-         <div style="float:left;">
-           <img src="../img/mitch.jpg" class="img-rounded">
-         </div>
-         <div style="float:left; padding: 8px;">
-           <h4>Mitchell Kates</h4>
-           <h6>Basketball (G)</h6>
-           <div class="alert alert-error">
-             Sprained ankle
+           <div style="float:left; padding: 8px;">
+             <h4>Mitchell Kates</h4>
+             <h6>Basketball (G)</h6>
+             <div class="alert alert-error">
+               Sprained ankle
+             </div>
            </div>
+           <div class="clearfix"></div>
          </div>
-         <div class="clearfix"></div>
-       </div>
-     </li>
-     <li class="span5">
-       <div class="thumbnail"> 
-         <div style="float:left;">
-           <img src="../img/mitch.jpg" class="img-rounded">
-         </div>
-         <div style="float:left; padding: 8px;">
-           <h4>Mitchell Kates</h4>
-           <h6>Basketball (G)</h6>
-           <div class="alert alert-error">
-             Sprained ankle
+       </li>
+       <li class="span4 offset2">
+         <div class="thumbnail"> 
+           <div style="float:left;">
+             <img src="../img/mitch.jpg" class="img-rounded">
            </div>
+           <div style="float:left; padding: 8px;">
+             <h4>Mitchell Kates</h4>
+             <h6>Basketball (G)</h6>
+             <div class="alert alert-error">
+               Sprained ankle
+             </div>
+           </div>
+           <div class="clearfix"></div>
          </div>
-         <div class="clearfix"></div>
-       </div>
-     </li>
+       </li>
+     </div>
+     <div class="row">
+     </div>
    </ul>
-  
+<script src="/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+
   </body>
 </html>
