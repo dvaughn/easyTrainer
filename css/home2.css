@@ -1,0 +1,63 @@
+#athlete-search {
+	background: #fafafa;
+	border-radius: 5px;
+	height: 80px;
+	margin-bottom: 20px;
+}
+
+.search-logo {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.search-box-wrap {
+	text-align: center;
+}
+
+.search-box {
+	display: block;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+.athlete-card {
+	background: #fafafa;
+	border-radius: 5px;
+	height: 140px;
+	position: relative;
+}
+
+.athlete-card-picture {
+	height: 140px;
+	width: 100px;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	
+}
+
+.athlete-card-name {
+	font-family: 'Noto Serif', serif;
+	text-align: center;
+}
+
+.athlete-card-sport {
+	font-family: 'Noto Serif', serif;
+	text-align: center;
+}
+
+.status-injured {
+	font-family: 'Noto Serif', serif;
+	text-align: center;
+	color: red;
+}
+
+.status-healthy {
+	font-family: 'Noto Serif', serif;
+	text-align: center;
+	color: green;
+}
+
