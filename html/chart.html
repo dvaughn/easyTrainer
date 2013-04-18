@@ -17,8 +17,7 @@
 <style>
 
 .profile {
-	width: 980px;
-	margin-left: 20px;
+	width: 1020px;
 	margin-bottom: 10px;
 	background: white;
 }
@@ -88,6 +87,31 @@
 .profile .profilebox p {
 	color: #555;
 }
+.bottom-container {
+	background: white;
+	padding-top: 20px;
+	
+}
+#tab-content {
+	background: white;
+}
+.main-container .nav {
+	margin-bottom: 0px;
+}
+.nav-tabs li a{
+	color: white;
+	outline:none;
+}
+.nav-tabs li a:hover {
+	color: black;
+}
+.historytable {
+	width: 900px;
+	margin: 30px auto;
+}
+#progress .alert {
+	margin: 20px 50px;
+}
 </style>
 
 <script>
@@ -108,7 +132,6 @@ function exerciseobj(name,difficulty,bodyareas) {
 
 var type;
 var exercises = [];
-exercises.push(new exerciseobj('Reverse Hamstring Curls','Easy',['Knee','Hamstring']));
 exercises.push(new exerciseobj('One-Legged Squats','Easy',['Knee','Quad']));
 exercises.push(new exerciseobj('Calf Raises','Easy',['Calf']));
 exercises.push(new exerciseobj('Lunges','Easy',['Knee','Quad','Hamstring']));
@@ -116,6 +139,27 @@ exercises.push(new exerciseobj('Side Squats','Easy',['Knee','Quad']));
 exercises.push(new exerciseobj('Clean and Jerk','Easy',['Quad','Shoulder']));
 exercises.push(new exerciseobj('Ankle Rolls','Easy',['Ankle','Foot']));
 exercises.push(new exerciseobj('Quadricep Stretch','Easy',['Knee','Quad']));
+exercises.push(new exerciseobj('Wall slide','Easy',['Knee', 'Quad']));
+exercises.push(new exerciseobj('Hamstring Curls','Easy',['Knee','Hamstring']));
+exercises.push(new exerciseobj('Box Squat','Easy',['Quad']));
+exercises.push(new exerciseobj('Jump Squat','Easy',['Quad’, ‘Ankle']));
+exercises.push(new exerciseobj('Pendulum','Easy',['Shoulder']));
+exercises.push(new exerciseobj('Crossover Arm Stretch','Easy',['Shoulder']));
+exercises.push(new exerciseobj('Passive Internal Rotation','Easy',['Shoulder']));
+exercises.push(new exerciseobj('Passive External Rotation','Easy',['Shoulder']));
+exercises.push(new exerciseobj('Sleeper Stretch','Easy',['Shoulder']));
+exercises.push(new exerciseobj('Standing Row','Easy',['Shoulder']));
+exercises.push(new exerciseobj('Dorsiflexion','Easy',['Ankle']));
+exercises.push(new exerciseobj('Plantar Flexion','Easy',['Ankle']));
+exercises.push(new exerciseobj('Scissor hops','Easy',['Ankle']));
+exercises.push(new exerciseobj('One leg mini squats','Easy',['Ankle']));
+exercises.push(new exerciseobj('Heel toe balance','Easy',['Ankle']));
+exercises.push(new exerciseobj('Donkey Calf Raise','Easy',['Calf']));
+exercises.push(new exerciseobj('Seated Calf Extension','Easy',['Calf']));
+exercises.push(new exerciseobj('45 degree Calf Press','Easy',['Calf']));
+exercises.push(new exerciseobj('45 degree Calf Raises','Easy',['Calf']));
+exercises.push(new exerciseobj('Jump Rope','Easy',['Calf']));
+exercises.push(new exerciseobj('Single Leg Calf Raises','Easy',['Calf']));
 
 
 //**********************************
@@ -265,6 +309,12 @@ var chartfunctionality = function() {
 		});
 	}); 
 }
+$(document).ready(function() {
+$('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+});
+});
 
 </script>
 </head>
@@ -274,7 +324,7 @@ var chartfunctionality = function() {
 		<div class="navbar">
 			<div class="navbar-inner">
 				<div class="navbar-contain">
-					<a class="brand" href="#"><img class='logo' src="../img/prod/logo.png"/></a>
+					<a class="brand" href="index.html"><img class='logo' src="../img/prod/logo.png"/></a>
 					<ul class="nav pull-right">
 						 <li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -282,9 +332,8 @@ var chartfunctionality = function() {
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href='#'>Kobe Bryant</a></li>
-								<li><a href='#'>John Wenzel</a></li>
-								<li><a href='#'>Add New Athlete</a></li>
+								<li><a href='chart.html'>Kobe Bryant</a></li>
+								<li><a href='newplayer.html'>Add New Athlete</a></li>
 							</ul>
 						</li>
 						<li><a href="#">Sign Out</a></li>
@@ -314,11 +363,21 @@ var chartfunctionality = function() {
 			</div>
 			<div class='clear'></div>
 		</div>
-		<div class="exercise-select well span3">
-		<div class="choose-exercise gradientbg">
+		
+		<ul class="nav nav-tabs" id="myTab">
+			<li class="active"><a href="#chart">Current Program</a></li>
+			<li><a href="#history">Injury History</a></li>
+			<li><a href="#progress">Athlete Progress</a></li>
+		</ul>
+ 
+		<div id="tab-content" class="tab-content">
+			<div class="tab-pane active" id="chart">
+				<div class="bottom-container">
+					<div class="exercise-select well span3">
+						<div class="choose-exercise gradientbg">
 			<h6> Select Different Body Area<i class="icon-search icon-white"></i></h6>
 		</div>
-		<div class="selectnewexercise">
+						<div class="selectnewexercise">
 			<div class="newexercise">
 				<h5>Knee</h5>
 			</div>
@@ -335,11 +394,9 @@ var chartfunctionality = function() {
 				<h5>Calf</h5>
 			</div>
 		</div>
-		<div class="exercise-container">
-		</div>
-	</div>
-
-		<div class="chart well droppable">
+						<div class="exercise-container"></div>
+					</div>
+					<div class="chart well droppable">
 		<div class="chart-header gradientbg">
 			<div class='title'> Exercise </div>
 			<div class='day'>
@@ -370,7 +427,71 @@ var chartfunctionality = function() {
 		
 		</div>
 	</div>
-		<div class="clear"></div>
+					<div class='clear'></div>
+				</div>
+			</div>
+			<div class="tab-pane" id="history">
+				<table class="table table-striped historytable">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Injury</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>April 12th, 2013</td>
+							<td>Torn Achilles Tendon</td>
+							<td>Beginning Rehab</td>
+						</tr>
+						<tr>
+							<td>January 3rd, 2013</td>
+							<td>Concussion</td>
+							<td>Healed</td>
+						</tr>
+						<tr>
+							<td>August 14th, 2012</td>
+							<td>Sprained Right Wrist</td>
+							<td>Healed</td>
+						</tr>
+						<tr>
+							<td>June 19th, 2012</td>
+							<td>Chin Laceration</td>
+							<td>Healed</td>
+						</tr>
+						<tr>
+							<td>September 8th, 2011</td>
+							<td>High Ankle Sprain - Left</td>
+							<td>Minor Aggravation</td>
+						</tr>
+					</tbody>
+				</table>
+			
+			
+			
+			</div>
+			<div class="tab-pane" id="progress">
+				<div class="alert alert-success">
+					<h5> April 14th, 2013</h5>
+					<p> I woke up feeling a lot better. I was able to put pressure on my heel and limp around. I noticed
+					some extra tightness in the morning</p>
+				</div>
+				<div class="alert alert-error">
+					<h5> April 13th, 2013</h5>
+					<p> Trying to stretch my achilles, I was almost in tears. I felt a shooting pain up and down my whole leg.</p>
+				</div>
+				<div class="alert alert-success">
+					<h5> March 11th, 2013</h5>
+					<p>My wrist feels completely healed. I lifte on it today and had 0 pain!</p>
+				</div>
+			</div>
+			<div class="tab-pane" id="settings">settings</div>
+		</div>
+		
+		
+		
+		
 	</div>
 
 	<div class="footer">
