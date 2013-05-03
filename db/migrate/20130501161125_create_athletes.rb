@@ -1,7 +1,8 @@
 class CreateAthletes < ActiveRecord::Migration
   def up
     create_table 'athletes' do |t|
-      t.string 'name'
+      t.string 'firstname'
+      t.string 'lastname'
       t.string 'email'
       t.string 'sport'
       t.integer 'height'
