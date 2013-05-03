@@ -1,0 +1,13 @@
+class TemplateexercisesController < ApplicationController
+
+  def create
+    name = params[:templateexercise][:name]
+    difficulty = params[:templateexercise][:difficulty]
+    bodyarea = params[:templateexercise][:bodyarea]
+
+    @tempexercise = Workout.find(wid).exercises.create(:name => name, :week1sets => week1sets, :week1reps => week1reps, :week2sets => week2sets, :week2reps => week2reps,
+				:week3sets => week3sets, :week3reps => week3reps, :week4sets => week4sets, :week4reps => week4reps,
+				:week5sets => week5sets, :week5reps => week5reps, :difficulty => difficulty, :bodyarea => bodyarea)
+  end
+
+end

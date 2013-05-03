@@ -1,4 +1,6 @@
 EasyTrainer::Application.routes.draw do
+  get "texercises/create"
+
   get "workouts/index"
 
   get "workouts/create"
