@@ -115,6 +115,24 @@
 </style>
 
 <script>
+//**********************************
+//**Initialize Workout Chart********
+//**********************************
+
+$(document).ready(function() {
+	workout = [];
+	workout.push(new exerciseobj('One-Legged Squats','Easy',['Knee','Quad']));
+	workout.push(new exerciseobj('Calf Raises','Easy',['Calf']));
+	for (var a=0;a < exercises.length; a++) {
+		for (var b=0;b < workout.length; b++) {
+			if (exercises[a].name === workout[b].name) {
+				exercises[a].included = true;
+				$('.drophere').css('display','none');
+			}
+		}
+	}
+	drawChart();
+});
 
 //**********************************
 //*******Exercise Object ***********
@@ -124,6 +142,16 @@ function exerciseobj(name,difficulty,bodyareas) {
 	this.difficulty = difficulty;
 	this.bodyarea = bodyareas;
 	this.included = false;
+	this.week1sets = 3;
+	this.week2sets = 3;
+	this.week3sets = 3;
+	this.week4sets = 3;
+	this.week5sets = 3;
+	this.week1reps = 10;
+	this.week2reps = 10;
+	this.week3reps = 10;
+	this.week4reps = 10;
+	this.week5reps = 10;	
 }
 
 //**********************************
@@ -189,6 +217,25 @@ var drawExercises = function(area) {
 	chartfunctionality();
 }
 
+var drawChart = function() {
+	for (var a=0; a < exercises.length; a++) {
+		if (exercises[a].included == true) {
+			b = exercises[a];
+			var header = b.name;
+			var title = $("<div class='exercise-title'>"+header+"</div>");
+			var row = $("<div class='chart-row'></div>");
+			var deletediv = $("<div class='delete'>x</div>");
+			row.append(title);
+			for (var c=0; c < 5; c++){
+				var columns = $("<div class='exercise1 setsrep'>3 x 15</div>");
+				row.append(columns);
+			};
+			row.append(deletediv);
+			$('.chart-body').prepend(row);
+		};
+	};
+	chartfunctionality();
+}
 //**********************************
 //****Sidebar Functionality*********
 //**********************************
