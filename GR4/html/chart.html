@@ -112,6 +112,22 @@
 #progress .alert {
 	margin: 20px 50px;
 }
+.addnote {
+	margin: 20px 50px;
+}
+.addnote textarea {
+	width: 944px;
+}
+.addnote .btn-group {
+	float: right;
+	margin: 0 20px;
+}
+.addnote .btn-group button:hover {
+	cursor: pointer;
+}
+.addnotebutton {
+	float: right;
+}
 </style>
 
 <script>
@@ -121,8 +137,8 @@
 
 $(document).ready(function() {
 	workout = [];
-	workout.push(new exerciseobj('One-Legged Squats','Easy',['Knee','Quad']));
-	workout.push(new exerciseobj('Calf Raises','Easy',['Calf']));
+	//workout.push(new exerciseobj('One-Legged Squats','Easy',['Knee','Quad']));
+	//workout.push(new exerciseobj('Calf Raises','Easy',['Calf']));
 	for (var a=0;a < exercises.length; a++) {
 		for (var b=0;b < workout.length; b++) {
 			if (exercises[a].name === workout[b].name) {
@@ -247,6 +263,7 @@ $(document).ready(function() {
 	chartfunctionality();
 	
 	$('.newexercise').click(function() {
+		$('.drophere').html("<h1> Drag and Drop Exercsises Here</h1>");
 		var area = $(this).children().html();
 		type = area;
 		var sidebar_exercises = [];
@@ -291,6 +308,7 @@ var addExercise = function(handle) {
 //**********************************
 //***Chart Functionality************
 //**********************************
+var currentsetsreps;
 var chartfunctionality = function() {
 	//Implement draggable
 	$( ".exercisedrag" ).draggable({
@@ -336,6 +354,7 @@ var chartfunctionality = function() {
 		if ($(this).children().length > 0) {
 		
 		} else {
+			currentsetsreps = $(this);
 			var stringval = $(this).html();
 			stringval = stringval.split(' x ');
 			$(this).addClass('editing');
@@ -355,6 +374,7 @@ var chartfunctionality = function() {
 			$(handler).removeClass('editing');
 		});
 	}); 
+	
 }
 $(document).ready(function() {
 $('#myTab a').click(function (e) {
@@ -362,6 +382,56 @@ $('#myTab a').click(function (e) {
     $(this).tab('show');
 });
 });
+
+$(document).keypress(function(event) {
+    if (event.which == 13 || event.keyCode == 13) {
+		handle = currentsetsreps;
+		var handler = $(handle).parent().children('.editing');
+		var children = $(handler).children();
+		$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
+		$(handler).removeClass('editing');
+    };
+});
+
+
+//**********************************
+//***********Notes******************
+//**********************************
+var color='green'
+
+$(document).ready(function() {
+	
+	$('.notecolor button').click(function() {
+		var handle = $(this);
+		$('.notecolor button').removeClass('disabled');
+		$('.notecolor button').addClass('disabled');
+		handle.removeClass('disabled');
+		color = handle.html();
+	});
+	
+	$('.addnotebutton').click(function() {
+		var today = new Date();
+		today = String(today)
+		today = today.split(" ");
+		//.split(" ");
+		today = today[0]+" "+today[1]+" "+today[2]
+		addNote(color,$('notetextarea').val(),today);
+	});
+});
+
+var addNote = function(color,message,date) {
+	var alerttext = color;
+	if (color === 'Green') { alerttext = 'success'};
+	if (color === 'Yellow') { alerttext = 'warning'};
+	if (color === 'Red') { alerttext = 'danger'};
+	if (color === 'Blue') { alerttext = 'info'};
+	var noteh = $("<div class='alert alert-"+alerttext+"'></div>");
+	noteh.append('<h5>'+date+'</h5>');
+	noteh.append('<p>'+message+'</p>');
+	$('.notes').prepend(noteh);
+}
+
+
 
 </script>
 </head>
@@ -414,7 +484,7 @@ $('#myTab a').click(function (e) {
 		<ul class="nav nav-tabs" id="myTab">
 			<li class="active"><a href="#chart">Current Program</a></li>
 			<li><a href="#history">Injury History</a></li>
-			<li><a href="#progress">Athlete Progress</a></li>
+			<li><a href="#progress">Athlete Notes</a></li>
 		</ul>
  
 		<div id="tab-content" class="tab-content">
@@ -448,27 +518,27 @@ $('#myTab a').click(function (e) {
 			<div class='title'> Exercise </div>
 			<div class='day'>
 				<p>Week 1</p>
-				<p> April 20th</p>
+				<p>May 5th</p>
 			</div>
 			<div class='day'>
 				<p>Week 2</p>
-				<p> April 21st</p>
+				<p>May 12th</p>
 			</div>
 			<div class='day'>
 				<p>Week 3</p>
-				<p> April 22nd</p>
+				<p>May 19th</p>
 			</div>
 			<div class='day'>
 				<p>Week 4</p>
-				<p> April 23rd</p>
+				<p>May 26th</p>
 			</div>
 			<div class='day'>
 				<p>Week 5</p>
-				<p> April 24th</p>
+				<p>June 2nd</p>
 			</div>
 		</div>
 		<div class="drophere">
-			<h1> Drop Exercises From Sidebar Here</h1>
+			<h1> Select an injury area from the sidebar</h1>
 		</div>
 		<div class='chart-body'>
 		
@@ -519,21 +589,34 @@ $('#myTab a').click(function (e) {
 			
 			</div>
 			<div class="tab-pane" id="progress">
-				<div class="alert alert-success">
-					<h5> April 14th, 2013</h5>
-					<p> I woke up feeling a lot better. I was able to put pressure on my heel and limp around. I noticed
-					some extra tightness in the morning</p>
+				<div class="addnote">
+					<textarea id="notetextarea" placeholder="Add a note or comment about the athlete"></textarea>
+					<button value='submit' name='submit' class='btn btn-custom-blue addnotebutton'>Add Note</button>
+					<div class="btn-group notecolor">
+						<button class="btn btn-danger">Red</button>
+						<button class="btn btn-warning disabled">Yellow</button>
+						<button class="btn btn-success disabled">Green</button>
+						<button class="btn btn-info disabled">Blue</button>
+					</div>
+					<div class='clear'></div>				
 				</div>
-				<div class="alert alert-error">
-					<h5> April 13th, 2013</h5>
-					<p> Trying to stretch my achilles, I was almost in tears. I felt a shooting pain up and down my whole leg.</p>
-				</div>
-				<div class="alert alert-success">
-					<h5> March 11th, 2013</h5>
-					<p>My wrist feels completely healed. I lifte on it today and had 0 pain!</p>
-				</div>
+				
+				<div class='notes'>
+					<div class="alert alert-success">
+						<h5> April 14th, 2013</h5>
+						<p> I woke up feeling a lot better. I was able to put pressure on my heel and limp around. I noticed
+						some extra tightness in the morning</p>
+					</div>
+					<div class="alert alert-error">
+						<h5> April 13th, 2013</h5>
+						<p> Trying to stretch my achilles, I was almost in tears. I felt a shooting pain up and down my whole leg.</p>
+					</div>
+					<div class="alert alert-success">
+						<h5> March 11th, 2013</h5>
+						<p>My wrist feels completely healed. I lifte on it today and had 0 pain!</p>
+					</div>
+				</dib>
 			</div>
-			<div class="tab-pane" id="settings">settings</div>
 		</div>
 		
 		

@@ -24,86 +24,66 @@
 	</head>
   
   <body>
-   	<div class="header">
-		<div class="navbar">
-			<div class="navbar-inner">
-				<div class="navbar-contain">
-					<a class="brand" href="#"><img class='logo' src="../img/prod/logo.png"/></a>
-					<ul class="nav pull-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							Athletes
-							<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href='#'>Kobe Bryant</a></li>
-								<li><a href='#'>John Wenzel</a></li>
-								<li><a href='#'>Add New Athlete</a></li>
-							</ul>
-						</li>
-						<li><a href="#">Sign Out</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+   
 	
 	<div class="main-container">
 		<img class="search-logo" src="../img/prod/logo.png" align="center"/>
 		<div class="search-box-wrap">
-			<input class="search-box" type="search" placeholder="Search for an Athlete, or browse below" list="athletes" autocomplete="on" onsearch="javascript:location.href='index.html';">
+			<input class="search-box" type="search" placeholder="Search for an Athlete, or browse below" list="athletes" autocomplete="off" onsearch="javascript:location.href='index.html';">
 			<datalist id="athletes">
 				<option value="Kobe Bryant">
 				<option value="John Wenzel">
+				<option value="Michael Jordan">
+				<option value="Carmelo Anthony">
 			</datalist>
+			<div class='actionbuttons'>
+				<a href='newplayer.html' class='btn btn-custom-blue'>or Create a New Athlete</a>
+			</div>
 		</div>
 		
-
-
-		
-
-			
-			
 			
 		<div class="row">
-			<div class="athlete-card span5 offset1" id="athlete-card1">
-				<img class="athlete-card-picture" src="../img/prod/kobe.jpg" align="left"/>
-				<h3 class="athlete-card-name">Kobe Bryant</h3>
-				<h4 class="athlete-card-sport">Basketball</h4>
-			</div>
-			<div class="athlete-card span5 offset2" id="athlete-card2">
-				<img class="athlete-card-picture" src="../img/prod/john.jpg" align="left"/>
-				<h3 class="athlete-card-name">John Wenzel</h3>
-				<h4 class="athlete-card-sport">Football<h4>
-				
-			</div>
+			<table>
+			<tr>
+				<td>
+					<a href='chart.html'><div class="athlete-card floatleft" id="athlete-card1">
+						<img class="athlete-card-picture" src="../img/prod/kobe.jpg" align="left"/>
+						<h3 class="athlete-card-name">Kobe Bryant</h3>
+						<h4 class="athlete-card-sport">Basketball</h4>
+						<h5 class="athlete-card-injury"><span>Torn Achilles Tendon</span></h5>
+					</div></a>
+				</td>
+				<td>
+					<a href='chart.html'><div class="athlete-card floatright" id="athlete-card2">
+						<img class="athlete-card-picture" src="../img/prod/john.jpg" align="left"/>
+						<h3 class="athlete-card-name">John Wenzel</h3>
+						<h4 class="athlete-card-sport">Football<h4>	
+						<h5 class="athlete-card-injury">Healthy</h5>
+					</div></a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href='chart.html'><div class="athlete-card floatleft" id="athlete-card1">
+						<img class="athlete-card-picture" src="http://imgc.allpostersimages.com/images/P-473-488-90/27/2773/5HLTD00Z/posters/sergio-garcia.jpg" align="left"/>
+						<h3 class="athlete-card-name">Sergio Garcia</h3>
+						<h4 class="athlete-card-sport">Golf</h4>
+						<h5 class="athlete-card-injury">Healthy</h5>
+					</div></a>
+				</td>
+				<td>
+					<a href='chart.html'><div class="athlete-card floatright" id="athlete-card2">
+						<img class="athlete-card-picture" src="http://ll-media.tmz.com/2012/05/02/derek-jeter-240x285.png" align="left"/>
+						<h3 class="athlete-card-name">Derek Jeter</h3>
+						<h4 class="athlete-card-sport">Baseball<h4>	
+						<h5 class="athlete-card-injury">Healthy</h5>
+					</div></a>
+				</td>
+			</tr>
+		</table>
 		</div>
+		
 	</div>
-	<script>
-		var kobeCard = document.getElementById('athlete-card1');
-		kobeCard.style.cursor ='pointer';
-		kobeCard.onclick = function() {
-			location.href = "index.html";
-		}
-		$('#athlete-card1').hover(
-			function () {
-				$(this).append($("<h4 class='status-injured'>Torn Achilles Tendon</h4>"))
-			},
-			function () {
-				$(this).find("h4:last").remove();
-			}
-		
-		);
-		$('#athlete-card2').hover(
-			function () {
-				$(this).append($("<h4 class='status-healthy'>Healthy</h4>"))
-			},
-			function () {
-				$(this).find("h4:last").remove();
-			}
-		
-		);
-	</script>
   
   </body>
 </html>

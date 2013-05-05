@@ -4,11 +4,19 @@
 	height: 80px;
 	margin-bottom: 20px;
 }
-
+.row {
+	width: 700px;
+	margin: 30px auto;
+}
+.row a:hover {
+	text-decoration: none;
+}
 .search-logo {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 80px;
+	margin-bottom: 40px;
 }
 
 .search-box-wrap {
@@ -22,21 +30,44 @@
 	margin-right: auto;
 }
 
-
-
 .athlete-card {
 	background: #fafafa;
+	border:1px solid #bbb;
+	box-shadow:0 0 3px #ccc;
 	border-radius: 5px;
 	height: 140px;
 	position: relative;
+	width: 300px;
+	margin: 25px;
 }
-
+.athlete-card:hover {
+	background: #ddd;
+	cursor: pointer;
+}
+.athlete-card h3 {
+	color: #333;
+}
+.athlete-card h4 {
+	color: #555;
+	font-weight: 100;
+}
+.athlete-card h5 {
+	text-align: center;
+	color: green;
+	font-size: 16px;
+}
+.athlete-card h5 span {
+	color: red;
+}
 .athlete-card-picture {
 	height: 140px;
 	width: 100px;
 	border-bottom-left-radius: 5px;
 	border-top-left-radius: 5px;
 	
+}
+.athletes {
+	line-height: 30px;
 }
 
 .athlete-card-name {
