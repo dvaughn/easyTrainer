@@ -50,8 +50,8 @@ class AthletesController < ApplicationController
     if session[:trainer_id]
       uid = session[:trainer_id]
 
-      if params[:athlete]
-        aid = params[:athlete][:athlete_id]
+      if params[:id]
+        aid = params[:id]
       else
         aid = session[:athlete_id]
       end
