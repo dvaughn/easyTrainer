@@ -8,6 +8,7 @@ class AthletesController < ApplicationController
     if @athlete
       session[:athlete_id] = @athlete.id
       session[:trainer_id] = nil
+      redirect_to :controller => :athletes, :action => :home
     else
       redirect_to :controller => :trainers, :action => :index
     end
@@ -58,8 +59,8 @@ class AthletesController < ApplicationController
       @trainer = Trainer.find(uid)
       @athlete = @trainer.athletes.find(aid)
     else
-      @athlete = @trainer.athletes.find(aid)
-      
+      aid = session[:athlete_id]
+      @athlete = Athlete.find(aid)
     end
   end
 end

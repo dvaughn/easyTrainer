@@ -1,6 +1,7 @@
 class TrainersController < ApplicationController
   def index
     @trainer = Trainer.new
+    @athlete = Athlete.new
   end
 
   def register
