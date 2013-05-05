@@ -1,0 +1,4 @@
+class Texercise < ActiveRecord::Base
+  attr_accessible :name, :difficulty
+  belongs_to :bodypart
+end

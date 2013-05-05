@@ -75,5 +75,12 @@ class ExercisesController < ApplicationController
     wid = session[:workout_id]
     eid = params[:exercise][:id]
     @exercise = Exercise.find(eid).destroy
+    respond_to do |format|
+      format.html{
+        redirect_to :controller => athletes, :action => home
+      }
+      format.json{
+        render :json => @exercise
+      }
   end
 end

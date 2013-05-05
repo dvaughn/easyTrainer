@@ -18,11 +18,11 @@ class ExercisesController < ApplicationController
     week5sets = params[:exercise][:week5sets]
     week5reps = params[:exercise][:week5reps]
     difficulty = params[:exercise][:difficulty]
-    bodyarea = params[:exercise][:bodyarea]
+    bodypart = params[:exercise][:bodypart]
 
     @exercise = Workout.find(wid).exercises.create(:name => name, :week1sets => week1sets, :week1reps => week1reps, :week2sets => week2sets, :week2reps => week2reps,
 				:week3sets => week3sets, :week3reps => week3reps, :week4sets => week4sets, :week4reps => week4reps,
-				:week5sets => week5sets, :week5reps => week5reps, :difficulty => difficulty, :bodyarea => bodyarea)
+				:week5sets => week5sets, :week5reps => week5reps, :difficulty => difficulty, :bodypart => bodypart)
 
     respond_to do |format|
       format.html{
@@ -55,10 +55,10 @@ class ExercisesController < ApplicationController
     week5sets = params[:exercise][:week5sets]
     week5reps = params[:exercise][:week5reps]
     difficulty = params[:exercise][:difficulty]
-    bodyarea = params[:exercise][:bodyarea]
+    bodypart = params[:exercise][:bodypart]
     @exercise = Exercise.find(eid).update_attributes(:name => name, :week1sets => week1sets, :week1reps => week1reps, :week2sets => week2sets, :week2reps => week2reps,
 				:week3sets => week3sets, :week3reps => week3reps, :week4sets => week4sets, :week4reps => week4reps,
-				:week5sets => week5sets, :week5reps => week5reps, :difficulty => difficulty, :bodyarea => bodyarea)
+				:week5sets => week5sets, :week5reps => week5reps, :difficulty => difficulty, :bodypart => bodypart)
 
     respond_to do |format|
       format.html{

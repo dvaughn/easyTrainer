@@ -13,8 +13,7 @@ class CreateExercises < ActiveRecord::Migration
       t.integer 'week5sets'
       t.integer 'week5reps'
       t.string 'difficulty'
-      t.string 'bodyarea'
-
+      t.string 'bodypart'
       t.references :workout
     end
   end

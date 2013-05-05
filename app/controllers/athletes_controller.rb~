@@ -2,6 +2,17 @@ class AthletesController < ApplicationController
   def index
   end
 
+  def login
+    email = params[:athlete][:email]
+    @athlete = Athlete.find_by_email(email)
+    if @athlete
+      session[:athlete_id] = @athlete.id
+      session[:trainer_id] = nil
+    else
+      redirect_to :controller => :trainers, :action => :index
+    end
+  end
+
   def create
     #Variable setting
     uid = session[:trainer_id]
@@ -35,20 +46,20 @@ class AthletesController < ApplicationController
   end
 
   def home
-    #Variable setting
-    uid = session[:trainer_id]
+    if session[:trainer_id]
+      uid = session[:trainer_id]
 
-    #if the params include a site then we get the site id from here
-    # else the site id is already stored in the session
-    if params[:athlete]
-      aid = params[:athlete][:athlete_id]
+      if params[:athlete]
+        aid = params[:athlete][:athlete_id]
+      else
+        aid = session[:athlete_id]
+      end
+      session[:athlete_id] = aid
+      @trainer = Trainer.find(uid)
+      @athlete = @trainer.athletes.find(aid)
     else
-      aid = session[:athlete_id]
+      @athlete = @trainer.athletes.find(aid)
+      
     end
-
-    session[:athlete_id] = aid
-
-    @trainer = Trainer.find(uid)
-    @athlete = @trainer.athletes.find(aid)
   end
 end
