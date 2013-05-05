@@ -1,2 +1,59 @@
-<h1><%= @trainer.email %></h1>
-<p>Find me in app/views/trainers/home.html.erb</p>
+<link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,700' rel='stylesheet' type='text/css'>
+<div class="main-container">
+	<img class="search-logo" src="/images/logo.png" align="center"/>
+	<div class="search-box-wrap">
+		<input class="search-box" type="search" placeholder="Search for an Athlete, or browse below" list="athletes" autocomplete="off" onsearch="javascript:location.href='index.html';">
+		<datalist id="athletes">
+			<option value="Kobe Bryant">
+			<option value="John Wenzel">
+			<option value="Michael Jordan">
+			<option value="Carmelo Anthony">
+		</datalist>
+		<div class='actionbuttons'>
+			<a href='newplayer.html' class='btn btn-custom-blue'>or Create a New Athlete</a>
+		</div>
+	</div>
+	
+		
+	<div class="row">
+		<table>
+		<tr>
+			<td>
+				<a href='chart.html'><div class="athlete-card floatleft" id="athlete-card1">
+					<img class="athlete-card-picture" src="/images/kobe.jpg" align="left"/>
+					<h3 class="athlete-card-name">Kobe Bryant</h3>
+					<h4 class="athlete-card-sport">Basketball</h4>
+					<h5 class="athlete-card-injury"><span>Torn Achilles Tendon</span></h5>
+				</div></a>
+			</td>
+			<td>
+				<a href='chart.html'><div class="athlete-card floatright" id="athlete-card2">
+					<img class="athlete-card-picture" src="/images/john.jpg" align="left"/>
+					<h3 class="athlete-card-name">John Wenzel</h3>
+					<h4 class="athlete-card-sport">Football<h4>	
+					<h5 class="athlete-card-injury">Healthy</h5>
+				</div></a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href='chart.html'><div class="athlete-card floatleft" id="athlete-card1">
+					<img class="athlete-card-picture" src="http://imgc.allpostersimages.com/images/P-473-488-90/27/2773/5HLTD00Z/posters/sergio-garcia.jpg" align="left"/>
+					<h3 class="athlete-card-name">Sergio Garcia</h3>
+					<h4 class="athlete-card-sport">Golf</h4>
+					<h5 class="athlete-card-injury">Healthy</h5>
+				</div></a>
+			</td>
+			<td>
+				<a href='chart.html'><div class="athlete-card floatright" id="athlete-card2">
+					<img class="athlete-card-picture" src="http://ll-media.tmz.com/2012/05/02/derek-jeter-240x285.png" align="left"/>
+					<h3 class="athlete-card-name">Derek Jeter</h3>
+					<h4 class="athlete-card-sport">Baseball<h4>	
+					<h5 class="athlete-card-injury">Healthy</h5>
+				</div></a>
+			</td>
+		</tr>
+	</table>
+	</div>
+	
+</div>

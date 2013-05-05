@@ -1,5 +1,5 @@
 body {
-	background: url("/images/graybg.png");
+	background: url("../img/prod/graybg.png");
 }
 .navbar .nav.pull-right {
 	margin-top: 10px;

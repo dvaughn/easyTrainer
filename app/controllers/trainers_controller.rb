@@ -68,6 +68,6 @@ class TrainersController < ApplicationController
     session[:athlete_id] = nil
     session[:workout_id] = nil
     @trainer = Trainer.find(uid)
-    @athlete = Athlete.new
+    @athletes = @trainer.athletes
   end
 end
