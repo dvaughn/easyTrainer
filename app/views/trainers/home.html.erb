@@ -8,7 +8,7 @@ $(document).ready(function() {
 		var ln = "<%= athlete.lastname %>";
 		var sport = "<%= athlete.sport %>";
 		var status = "<%= athlete.status %>";
-		var href = "/athlete/home/?id=<%= athlete.id %>";
+		var href = "/athletes/home/?id=<%= athlete.id %>";
 		newathlete = [fn,ln,sport,status,href];
 		athletes.push(newathlete);
 	<% end %>

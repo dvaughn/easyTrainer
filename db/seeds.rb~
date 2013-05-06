@@ -7,6 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 trainerman = Trainer.create(:name => "Trainerman", :email => "Trainerman@mit.edu", :password => "Trainerman", :password_confirmation => "Trainerman")
+<<<<<<< HEAD
 kobe = trainerman.athletes.create(:firstname => "Kobe", :lastname => "Bryant", :email => "kobebryant@mit.edu", :sport => "Basketball", :height => 78,
 				 :weight => 205, :hometown => "Philadelphia", :status => "injured")
 workout = kobe.create_workout(:name => "test")
+=======
+kobe = trainerman.athletes.create(:firstname => "Kobe", :lastname => "Bryant", :email => "kobebryant@mit.edu", :sport => "Basketball", :height => 78, :weight => 205, :hometown => "Philadelphia", :status => "injured")
+kobe.workout = Workout.create(:name => 'TestName')
+>>>>>>> 8a86479571cb5c5b3c8dc4f36ca26068f3d59cf7
