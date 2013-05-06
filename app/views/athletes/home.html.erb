@@ -5,17 +5,15 @@
 
 $(document).ready(function() {
 	workout = [];
-	<% @athlete.workout.exercises do |exercise| %>
-		var eo = new exerciseobj("<%= exercise.name %>","<%= exercise.difficulty %>",["<%= exercise.bodyarea %>"]);
+	<% @athlete.workout.exercises.each do |exercise| %>
+		var eo = new exerciseobj("<%= exercise.name %>","<%= exercise.difficulty %>",["<%= exercise.bodypart %>"],"<%= exercise.week1sets %>","<%= exercise.week2sets %>","<%= exercise.week3sets %>","<%= exercise.week4sets %>","<%= exercise.week5sets %>","<%= exercise.week1reps %>","<%= exercise.week2reps %>","<%= exercise.week1reps %>","<%= exercise.week3reps %>","<%= exercise.week4reps %>","<%= exercise.week5reps %>");
 		workout.push(eo);
-		console.log('here');
+		console.log(eo.week1sets)
 	<% end %>
-	console.log(workout);
-	//workout.push(new exerciseobj('One-Legged Squats','Easy',['Knee','Quad']));
-	//workout.push(new exerciseobj('Calf Raises','Easy',['Calf']));
 	for (var a=0;a < exercises.length; a++) {
 		for (var b=0;b < workout.length; b++) {
 			if (exercises[a].name === workout[b].name) {
+				exercises[a] = workout[b];
 				exercises[a].included = true;
 				$('.drophere').css('display','none');
 			}
@@ -27,21 +25,38 @@ $(document).ready(function() {
 //**********************************
 //*******Exercise Object ***********
 //**********************************
-function exerciseobj(name,difficulty,bodyareas) {
+function exerciseobj(name,difficulty,bodyareas,week1sets,week2sets,week3sets,week4sets,week5sets,week1reps,week2reps,week3reps,week4reps,week5reps) {
 	this.name = name;
 	this.difficulty = difficulty;
 	this.bodyarea = bodyareas;
 	this.included = false;
-	this.week1sets = 3;
-	this.week2sets = 3;
-	this.week3sets = 3;
-	this.week4sets = 3;
-	this.week5sets = 3;
-	this.week1reps = 10;
-	this.week2reps = 10;
-	this.week3reps = 10;
-	this.week4reps = 10;
-	this.week5reps = 10;	
+	this.week1sets = week1sets;
+	this.week2sets = week2sets;
+	this.week3sets = week3sets;
+	this.week4sets = week4sets;
+	this.week5sets = week4sets;
+	this.week1reps = week1reps;
+	this.week2reps = week2reps;
+	this.week3reps = week3reps;
+	this.week4reps = week4reps;
+	this.week5reps = week5reps;
+	
+	this.getweeksets = function(num) {
+		if (num === 1) { return this.week1sets};
+		if (num === 2) { return this.week2sets};
+		if (num === 3) { return this.week3sets};
+		if (num === 4) { return this.week4sets};
+		if (num === 5) { return this.week5sets};
+	}
+	this.getweekreps = function(num) {
+		if (num === 1) { return this.week1reps};
+		if (num === 2) { return this.week2reps};
+		if (num === 3) { return this.week3reps};
+		if (num === 4) { return this.week4reps};
+		if (num === 5) { return this.week5reps};
+	}
+	
+	
 }
 
 //**********************************
@@ -50,34 +65,34 @@ function exerciseobj(name,difficulty,bodyareas) {
 
 var type;
 var exercises = [];
-exercises.push(new exerciseobj('One-Legged Squats','Easy',['Knee','Quad']));
-exercises.push(new exerciseobj('Calf Raises','Easy',['Calf']));
-exercises.push(new exerciseobj('Lunges','Easy',['Knee','Quad','Hamstring']));
-exercises.push(new exerciseobj('Side Squats','Easy',['Knee','Quad']));
-exercises.push(new exerciseobj('Clean and Jerk','Easy',['Quad','Shoulder']));
-exercises.push(new exerciseobj('Ankle Rolls','Easy',['Ankle','Foot']));
-exercises.push(new exerciseobj('Quadricep Stretch','Easy',['Knee','Quad']));
-exercises.push(new exerciseobj('Wall slide','Easy',['Knee', 'Quad']));
-exercises.push(new exerciseobj('Hamstring Curls','Easy',['Knee','Hamstring']));
-exercises.push(new exerciseobj('Box Squat','Easy',['Quad']));
-exercises.push(new exerciseobj('Jump Squat','Easy',['Quad’, ‘Ankle']));
-exercises.push(new exerciseobj('Pendulum','Easy',['Shoulder']));
-exercises.push(new exerciseobj('Crossover Arm Stretch','Easy',['Shoulder']));
-exercises.push(new exerciseobj('Passive Internal Rotation','Easy',['Shoulder']));
-exercises.push(new exerciseobj('Passive External Rotation','Easy',['Shoulder']));
-exercises.push(new exerciseobj('Sleeper Stretch','Easy',['Shoulder']));
-exercises.push(new exerciseobj('Standing Row','Easy',['Shoulder']));
-exercises.push(new exerciseobj('Dorsiflexion','Easy',['Ankle']));
-exercises.push(new exerciseobj('Plantar Flexion','Easy',['Ankle']));
-exercises.push(new exerciseobj('Scissor hops','Easy',['Ankle']));
-exercises.push(new exerciseobj('One leg mini squats','Easy',['Ankle']));
-exercises.push(new exerciseobj('Heel toe balance','Easy',['Ankle']));
-exercises.push(new exerciseobj('Donkey Calf Raise','Easy',['Calf']));
-exercises.push(new exerciseobj('Seated Calf Extension','Easy',['Calf']));
-exercises.push(new exerciseobj('45 degree Calf Press','Easy',['Calf']));
-exercises.push(new exerciseobj('45 degree Calf Raises','Easy',['Calf']));
-exercises.push(new exerciseobj('Jump Rope','Easy',['Calf']));
-exercises.push(new exerciseobj('Single Leg Calf Raises','Easy',['Calf']));
+exercises.push(new exerciseobj('One-Legged Squats','Easy',['Knee','Quad'],1,10,2,11,3,12,4,13,5,14));
+exercises.push(new exerciseobj('Calf Raises','Easy',['Calf'],1,10,2,11,3,12,4,13,5,14));
+exercises.push(new exerciseobj('Lunges','Easy',['Knee','Quad','Hamstring'],1,10,2,11,3,12,4,13,5,14));
+exercises.push(new exerciseobj('Side Squats','Easy',['Knee','Quad'],1,10,2,11,3,12,4,13,5,14));
+// exercises.push(new exerciseobj('Clean and Jerk','Easy',['Quad','Shoulder']));
+// exercises.push(new exerciseobj('Ankle Rolls','Easy',['Ankle','Foot']));
+// exercises.push(new exerciseobj('Quadricep Stretch','Easy',['Knee','Quad']));
+// exercises.push(new exerciseobj('Wall slide','Easy',['Knee', 'Quad']));
+// exercises.push(new exerciseobj('Hamstring Curls','Easy',['Knee','Hamstring']));
+// exercises.push(new exerciseobj('Box Squat','Easy',['Quad']));
+// exercises.push(new exerciseobj('Jump Squat','Easy',['Quad’, ‘Ankle']));
+// exercises.push(new exerciseobj('Pendulum','Easy',['Shoulder']));
+// exercises.push(new exerciseobj('Crossover Arm Stretch','Easy',['Shoulder']));
+// exercises.push(new exerciseobj('Passive Internal Rotation','Easy',['Shoulder']));
+// exercises.push(new exerciseobj('Passive External Rotation','Easy',['Shoulder']));
+// exercises.push(new exerciseobj('Sleeper Stretch','Easy',['Shoulder']));
+// exercises.push(new exerciseobj('Standing Row','Easy',['Shoulder']));
+// exercises.push(new exerciseobj('Dorsiflexion','Easy',['Ankle']));
+// exercises.push(new exerciseobj('Plantar Flexion','Easy',['Ankle']));
+// exercises.push(new exerciseobj('Scissor hops','Easy',['Ankle']));
+// exercises.push(new exerciseobj('One leg mini squats','Easy',['Ankle']));
+// exercises.push(new exerciseobj('Heel toe balance','Easy',['Ankle']));
+// exercises.push(new exerciseobj('Donkey Calf Raise','Easy',['Calf']));
+// exercises.push(new exerciseobj('Seated Calf Extension','Easy',['Calf']));
+// exercises.push(new exerciseobj('45 degree Calf Press','Easy',['Calf']));
+// exercises.push(new exerciseobj('45 degree Calf Raises','Easy',['Calf']));
+// exercises.push(new exerciseobj('Jump Rope','Easy',['Calf']));
+// exercises.push(new exerciseobj('Single Leg Calf Raises','Easy',['Calf']));
 
 
 //**********************************
@@ -116,8 +131,9 @@ var drawChart = function() {
 			var row = $("<div class='chart-row'></div>");
 			var deletediv = $("<div class='delete'>x</div>");
 			row.append(title);
+			console.log(b);
 			for (var c=0; c < 5; c++){
-				var columns = $("<div class='exercise1 setsrep'>3 x 15</div>");
+				var columns = $("<div class='exercise1 setsrep'>"+b.getweeksets(c+1)+" x "+b.getweekreps(c+1)+"</div>");
 				row.append(columns);
 			};
 			row.append(deletediv);
@@ -310,6 +326,15 @@ var addNote = function(color,message,date) {
 //***Front to Back End Calls *******
 //**********************************
 //Changing an exercise
+$(document).ready(function() {
+$.get({
+	url: "wtf",
+	dataType: 'json',
+	data: "{'exercise': {'id':1}}",
+	}).done(function() {
+		console.log('Deleted');
+	});
+});
 
 //Updating a sets and reps
 
