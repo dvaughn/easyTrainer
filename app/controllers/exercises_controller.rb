@@ -3,6 +3,7 @@ class ExercisesController < ApplicationController
   end
 
   def create
+    set_cors_headers
     uid = session[:trainer_id]
     aid = session[:athlete_id]
     name = params[:exercise][:name]
@@ -34,6 +35,7 @@ class ExercisesController < ApplicationController
   end
 
   def update
+    set_cors_headers
     uid = session[:trainer_id]
     aid = session[:athlete_id]
     eid = params[:exercise][:id]
@@ -64,6 +66,7 @@ class ExercisesController < ApplicationController
   end
 
   def delete
+    set_cors_headers
     uid = session[:trainer_id]
     aid = session[:athlete_id]
     eid = params[:exercise][:id]
@@ -75,5 +78,27 @@ class ExercisesController < ApplicationController
       format.json{
         render :json => @exercise
       }
+  end
+
+  def set_cors_headers
+    headers["Access-Control-Allow-Origin"] = "*"
+    headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"
+    headers["Access-Control-Allow-Headers"] = "Content-Type, Origin, Referer, User-Agent"
+    headers["Access-Control-Max-Age"] = "3600"
+  end
+
+  def create_preflight
+    set_cors_headers
+    render :text => "", :content_type => "text/plain"
+  end
+
+  def delete_preflight
+    set_cors_headers
+    render :text => "", :content_type => "text/plain"
+  end
+
+  def update_preflight
+    set_cors_headers
+    render :text => "", :content_type => "text/plain"
   end
 end
