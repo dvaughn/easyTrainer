@@ -32,10 +32,6 @@ class ExercisesController < ApplicationController
         render :json => @exercise
       }
 
-
-
-    
-
   end
 
   def update
