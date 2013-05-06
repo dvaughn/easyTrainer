@@ -8,6 +8,7 @@ $(document).ready(function() {
 	<% @athlete.workout.exercises do |exercise| %>
 		var eo = new exerciseobj("<%= exercise.name %>","<%= exercise.difficulty %>",["<%= exercise.bodyarea %>"]);
 		workout.push(eo);
+		console.log('here');
 	<% end %>
 	console.log(workout);
 	//workout.push(new exerciseobj('One-Legged Squats','Easy',['Knee','Quad']));

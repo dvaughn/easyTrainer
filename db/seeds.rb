@@ -10,4 +10,5 @@ trainerman = Trainer.create(:name => "Trainerman", :email => "Trainerman@mit.edu
 kobe = trainerman.athletes.create(:firstname => "Kobe", :lastname => "Bryant", :email => "kobebryant@mit.edu", :sport => "Basketball", :height => 78,
 				 :weight => 205, :hometown => "Philadelphia", :status => "injured")
 workout = kobe.create_workout(:name => "test")
+workout.exercises.create(:name => 'Lunges', :'week1sets' => 3, :'week2sets' => 3, :'week3sets' => 3, :'week4sets' => 3, :'week5sets' => 3, :'week1reps' => 10, :'week2reps' => 10, :'week3reps' => 10, :'week4reps' => 10, :'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Knee') 
 
