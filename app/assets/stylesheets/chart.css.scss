@@ -1,0 +1,113 @@
+
+.profile {
+	width: 1020px;
+	margin-bottom: 10px;
+	background: white;
+}
+.profile .profilepic {
+	border: 3px solid #eee;
+	width: 195px;
+	float: left;
+}
+.profile .profileinfo {
+	float: left;
+	width: 400px;
+	margin-left: 10px;
+}
+.profile .profileinfo h2 {
+	color: #333;
+	line-height: 30px;
+	padding: 0;
+	margin: 0;
+}
+.profile .profileinfo h3 {
+	color: #999;
+	line-height: 40px;
+	padding: 0;
+	margin: 0;
+	font-weight: 200;
+	font-size: 20px;
+}
+.profile .profileinfo h4 {
+	color: #aaa;
+	line-height: 25px;
+	padding: 0;
+	margin: 0;
+	font-weight: 200;
+	font-size: 16px;
+}
+.profile .profileinfo h5 {
+	color: #bbb;
+	line-height: 20px;
+	padding: 0;
+	margin: 0;
+	padding-top: 8px;
+	font-weight: 200;
+	font-size: 12px;
+}
+.profile .profileinfo h6 {
+	color: #D60404;
+	padding: 0;
+	margin: 0;
+	font-weight: 600;
+	font-size: 24px;
+}
+.profile .profilebox {
+	float: right;
+	height: 175px;
+	width: 280px;
+	margin-right: 5px;
+	margin-bottom: 0px;
+	padding: 0px 10px;
+	overflow-y: scroll;
+}
+
+.profile .profilebox h3 {
+	color: #666;
+	line-height: 30px;
+	font-size: 17px;
+}
+.profile .profilebox p {
+	color: #555;
+}
+.bottom-container {
+	background: white;
+	padding-top: 20px;
+	
+}
+#tab-content {
+	background: white;
+}
+.main-container .nav {
+	margin-bottom: 0px;
+}
+.nav-tabs li a{
+	color: white;
+	outline:none;
+}
+.nav-tabs li a:hover {
+	color: black;
+}
+.historytable {
+	width: 900px;
+	margin: 30px auto;
+}
+#progress .alert {
+	margin: 20px 50px;
+}
+.addnote {
+	margin: 20px 50px;
+}
+.addnote textarea {
+	width: 944px;
+}
+.addnote .btn-group {
+	float: right;
+	margin: 0 20px;
+}
+.addnote .btn-group button:hover {
+	cursor: pointer;
+}
+.addnotebutton {
+	float: right;
+}
