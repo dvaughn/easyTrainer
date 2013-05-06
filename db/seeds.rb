@@ -8,4 +8,4 @@
 
 trainerman = Trainer.create(:name => "Trainerman", :email => "Trainerman@mit.edu", :password => "Trainerman", :password_confirmation => "Trainerman")
 kobe = trainerman.athletes.create(:firstname => "Kobe", :lastname => "Bryant", :email => "kobebryant@mit.edu", :sport => "Basketball", :height => 78, :weight => 205, :hometown => "Philadelphia", :status => "injured")
-
+kobe.workout = Workout.create(:name => 'TestName')
