@@ -29,7 +29,8 @@ class AthletesController < ApplicationController
     @athlete = Trainer.find(uid).athletes.create(:firstname => firstname, :lastname => lastname, :email => email,
 						:sport => sport, :height => height, :weight => weight, 
 						:hometown => hometown, :status => status)
-    @workout = @athlete.create_workout(:name => "main")
+    @workout = Workout.create(:name => "main")
+    @athlete.workout = @workout
     redirect_to :controller => :athletes, :action => :home
   end
 
