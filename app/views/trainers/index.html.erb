@@ -10,14 +10,14 @@
 		<div class="athleteform loginform">
 			<%= form_for @athlete, :url => { :controller => "athletes", :action=> "login" }, :html => { :method => "POST" } do |f| %>
 				<%= f.text_field :email, :placeholder => "Email" %>
-				<%= f.submit "Login", :class => "btn" %>
+				<%= f.submit "Login", :class => "btn athleteloginbutton" %>
 			<% end %>
 		</div>
 		<div class="trainerform loginform">
 			<%= form_for @trainer, :url => { :controller => "trainers", :action=> "login" }, :html => { :method => "POST" } do |f| %>
 				<%= f.text_field :email, :placeholder => "Email" %>
 				<%= f.password_field :password, :placeholder => "Password" %>
-				<%= f.submit "Login", :class => "btn" %>
+				<%= f.submit "Login", :class => "btn loginbutton" %>
 			<% end %>
 		</div>
 		
