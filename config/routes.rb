@@ -1,11 +1,7 @@
 EasyTrainer::Application.routes.draw do
 
-
-  get "injuries/create"
-
-  get "injuries/update"
-
-  get "injuries/delete"
+  match "/restricted/resource" => "home#resource_preflight", :constraints => { :method => "OPTIONS" }
+  match "/restricted/resource" => "home#resource"
 
   match "/" => "trainers#index"
   match ":controller/:action"

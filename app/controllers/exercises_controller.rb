@@ -5,7 +5,6 @@ class ExercisesController < ApplicationController
   def create
     uid = session[:trainer_id]
     aid = session[:athlete_id]
-    wid = session[:workout_id]
     name = params[:exercise][:name]
     week1sets = params[:exercise][:week1sets]
     week1reps = params[:exercise][:week1reps]
@@ -20,7 +19,7 @@ class ExercisesController < ApplicationController
     difficulty = params[:exercise][:difficulty]
     bodypart = params[:exercise][:bodypart]
 
-    @exercise = Workout.find(wid).exercises.create(:name => name, :week1sets => week1sets, :week1reps => week1reps, :week2sets => week2sets, :week2reps => week2reps,
+    @exercise = Athlete.find(aid).workout.exercises.create(:name => name, :week1sets => week1sets, :week1reps => week1reps, :week2sets => week2sets, :week2reps => week2reps,
 				:week3sets => week3sets, :week3reps => week3reps, :week4sets => week4sets, :week4reps => week4reps,
 				:week5sets => week5sets, :week5reps => week5reps, :difficulty => difficulty, :bodypart => bodypart)
 
@@ -37,7 +36,6 @@ class ExercisesController < ApplicationController
   def update
     uid = session[:trainer_id]
     aid = session[:athlete_id]
-    wid = session[:workout_id]
     eid = params[:exercise][:id]
     name = params[:exercise][:name]
     week1sets = params[:exercise][:week1sets]
@@ -68,7 +66,6 @@ class ExercisesController < ApplicationController
   def delete
     uid = session[:trainer_id]
     aid = session[:athlete_id]
-    wid = session[:workout_id]
     eid = params[:exercise][:id]
     @exercise = Exercise.find(eid).destroy
     respond_to do |format|
