@@ -7,6 +7,28 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+######## SEEDED BODYPARTS #########
+
+neck = Bodypart.create(:name => "Neck")
+shoulder = Bodypart.create(:name => "Shoulder")
+upper_back = Bodypart.create(:name => "Upper Back")
+lower_back = Bodypart.create(:name => "Lower Back")
+arm = Bodypart.create(:name => "Arm")
+wrist = Bodypart.create(:name => "Wrist")
+hand = Bodypart.create(:name => "Hand")
+core = Bodypart.create(:name => "Core")
+hip = Bodypart.create(:name => "Hip")
+groin = Bodypart.create(:name => "Groin")
+quad = Bodypart.create(:name => "Quad")
+hamstring = Bodypart.create(:name => "Hamstring")
+knee = Bodypart.create(:name => "Knee")
+calf = Bodypart.create(:name => "Calf")
+ankle = Bodypart.create(:name => "Ankle")
+foot = Bodypart.create(:name => "Foot")
+
+######## SEEDED EXERCISES #########
+
+
 ######## SEEDED TRAINER1 -- Login => Trainerman@mit.edu : Trainerman ######## 
 trainerman = Trainer.create(:name => "Trainerman", :email => "Trainerman@mit.edu", :password => "Trainerman", :password_confirmation => "Trainerman")
 

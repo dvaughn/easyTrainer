@@ -7,8 +7,31 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+######## SEEDED BODYPARTS #########
+
+neck = Bodypart.create(:name => "Neck")
+shoulder = Bodypart.create(:name => "Shoulder")
+upper_back = Bodypart.create(:name => "Upper Back")
+lower_back = Bodypart.create(:name => "Lower Back")
+arm = Bodypart.create(:name => "Arm")
+wrist = Bodypart.create(:name => "Wrist")
+hand = Bodypart.create(:name => "Hand")
+core = Bodypart.create(:name => "Core")
+hip = Bodypart.create(:name => "Hip")
+groin = Bodypart.create(:name => "Groin")
+quad = Bodypart.create(:name => "Quad")
+hamstring = Bodypart.create(:name => "Hamstring")
+knee = Bodypart.create(:name => "Knee")
+calf = Bodypart.create(:name => "Calf")
+ankle = Bodypart.create(:name => "Ankle")
+foot = Bodypart.create(:name => "Foot")
+
+
+
 ######## SEEDED TRAINER1 -- Login => Trainerman@mit.edu : Trainerman ######## 
 trainerman = Trainer.create(:name => "Trainerman", :email => "Trainerman@mit.edu", :password => "Trainerman", :password_confirmation => "Trainerman")
+
+######## SEEDED TRAINER1's ATHLETES #########
 kobe = trainerman.athletes.create(:firstname => "Kobe", :lastname => "Bryant", :email => "kobebryant@mit.edu", :sport => "Basketball", :height => 78,
 				 :weight => 205, :hometown => "Philadelphia, PA", :status => "injured")
 john = trainerman.athletes.create(:firstname => "John", :lastname => "Wenzel", :email => "jwenzel@mit.edu", :sport => "Football", :height => 74,
@@ -21,6 +44,7 @@ ron = trainerman.athletes.create(:firstname => "Ron", :lastname => "Burgundy", :
 				 :weight => 205, :hometown => "San Diego, CA", :status => "healthy")
 brock = trainerman.athletes.create(:firstname => "Brock", :lastname => "Lesnar", :email => "lesnar@mit.edu", :sport => "Wrestling", :height => 75,
 				 :weight => 285, :hometown => "Webster, SD", :status => "injured")
+
 workout = kobe.create_workout(:name => "test")
 ex1 = workout.exercises.create(:name => 'Lunges', :'week1sets' => 3, :'week2sets' => 3, :'week3sets' => 3, :'week4sets' => 3,
  			:'week5sets' => 3, :'week1reps' => 10, :'week2reps' => 10, :'week3reps' => 10, :'week4reps' => 10, 
