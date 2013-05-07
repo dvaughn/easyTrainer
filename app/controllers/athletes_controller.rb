@@ -61,7 +61,11 @@ class AthletesController < ApplicationController
       @trainer = Trainer.find(uid)
       @athlete = @trainer.athletes.find(aid)
     else
-      aid = session[:athlete_id]
+      if session[:athlete_id]
+        aid = session[:athlete_id]
+      else
+        aid = params[:id]
+      end
       @athlete = Athlete.find(aid)
     end
   end

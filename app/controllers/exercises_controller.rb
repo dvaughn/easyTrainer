@@ -26,12 +26,12 @@ class ExercisesController < ApplicationController
 
     respond_to do |format|
       format.html{
-        redirect_to :controller => athletes, :action => home
+        redirect_to :controller => :athletes, :action => :home
       }
       format.json{
         render :json => @exercise
       }
-
+    end
   end
 
   def update
@@ -58,11 +58,12 @@ class ExercisesController < ApplicationController
 
     respond_to do |format|
       format.html{
-        redirect_to :controller => athletes, :action => home
+        redirect_to :controller => :athletes, :action => :home
       }
       format.json{
         render :json => @exercise
       }
+    end
   end
 
   def delete
@@ -73,11 +74,12 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.find(eid).destroy
     respond_to do |format|
       format.html{
-        redirect_to :controller => athletes, :action => home
+        redirect_to :controller => :athletes, :action => :home
       }
       format.json{
         render :json => @exercise
       }
+    end
   end
 
   def set_cors_headers

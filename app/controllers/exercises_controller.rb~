@@ -31,7 +31,7 @@ class ExercisesController < ApplicationController
       format.json{
         render :json => @exercise
       }
-
+    end
   end
 
   def update
@@ -63,6 +63,7 @@ class ExercisesController < ApplicationController
       format.json{
         render :json => @exercise
       }
+    end
   end
 
   def delete
@@ -78,6 +79,7 @@ class ExercisesController < ApplicationController
       format.json{
         render :json => @exercise
       }
+    end
   end
 
   def set_cors_headers
