@@ -51,20 +51,20 @@ $(document).ready(function() {
 		<h2> Create a New Athlete </h2>
 		<div class="clear"></div>
 
-		<%= form_for @user, :url => { :action=> "register" }, :html => { :method => "POST" } do |f| %>
+		<%= form_for @athlete, :url => { :action=> "create" }, :html => { :method => "POST" }, :class => "form-horizontal" do |f| %>
 
 
-<%= f.text_field :username %>
+			<%= f.text_field :username %>
 
-<%= f.label "Password:" %>
-<%= f.password_field :password %>
+			<%= f.label "Password:" %>
+			<%= f.password_field :password %>
 
-<%= f.label "Confirm Password:" %>
-<%= f.password_field :password_confirmation %>
+			<%= f.label "Confirm Password:" %>
+			<%= f.password_field :password_confirmation %>
 
-<%= f.submit "Register", :class => "btn btn-primary" %>
+			<%= f.submit "Register", :class => "btn btn-primary" %>
 
-<% end %>
+		
 		<div class="control-group">
 			<label class="control-label" for="inputName">Name</label>
 			<div class="controls">
@@ -158,6 +158,7 @@ $(document).ready(function() {
 				<a href='chart.html' type="submit" class="btn btn-custom-blue">Add Athlete</a>
 			</div>
 		</div>
+		<% end %>
 		</form>
 	</div>
 	<div class="clear"></div>

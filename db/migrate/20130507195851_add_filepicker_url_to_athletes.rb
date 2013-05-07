@@ -1,4 +1,4 @@
-class AddFilepickerUrlToAthlete < ActiveRecord::Migration
+class AddFilepickerUrlToAthletes < ActiveRecord::Migration
   def up
     add_column :athletes, :filepicker_url, :string
   end
