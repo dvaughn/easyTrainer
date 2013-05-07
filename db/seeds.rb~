@@ -26,7 +26,74 @@ calf = Bodypart.create(:name => "Calf")
 ankle = Bodypart.create(:name => "Ankle")
 foot = Bodypart.create(:name => "Foot")
 
+######## SEEDED EXERCISES #########
 
+knee.texercises.create(:name => "One-Legged Squats", :difficulty => "Hard")
+quad.texercises.create(:name => "One-Legged Squats", :difficulty => "Hard")
+
+calf.texercises.create(:name => "Calf Raises", :difficulty => "Easy")
+
+knee.texercises.create(:name => "Lunges", :difficulty => "Medium")
+quad.texercises.create(:name => "Lunges", :difficulty => "Medium")
+hamstring.texercises.create(:name => "Lunges", :difficulty => "Medium")
+
+knee.texercises.create(:name => "Side Squats", :difficulty => "Medium")
+quad.texercises.create(:name => "Side Squats", :difficulty => "Medium")
+
+knee.texercises.create(:name => "Clean and Jerk", :difficulty => "Medium")
+quad.texercises.create(:name => "Clean and Jerk", :difficulty => "Medium")
+
+ankle.texercises.create(:name => "Clean and Jerk", :difficulty => "Medium")
+foot.texercises.create(:name => "Clean and Jerk", :difficulty => "Medium")
+
+knee.texercises.create(:name => "Quadricep Stretch", :difficulty => "Easy")
+quad.texercises.create(:name => "Quadricep Stretch", :difficulty => "Easy")
+
+knee.texercises.create(:name => "Wall slide", :difficulty => "Easy")
+hamstring.texercises.create(:name => "Wall slide", :difficulty => "Easy")
+
+knee.texercises.create(:name => "Hamstring Curls", :difficulty => "Easy")
+hamstring.texercises.create(:name => "Hamstring Curls", :difficulty => "Easy")
+
+quad.texercises.create(:name => "Box Squat", :difficulty => "Easy")
+
+quad.texercises.create(:name => "Jump Squat", :difficulty => "Medium")
+ankle.texercises.create(:name => "Jump Squat", :difficulty => "Medium")
+
+shoulder.texercises.create(:name => "Pendulum", :difficulty => "Easy")
+
+shoulder.texercises.create(:name => "Crossover Arm Stretch", :difficulty => "Easy")
+arm.texercises.create(:name => "Crossover Arm Stretch", :difficulty => "Easy")
+
+shoulder.texercises.create(:name => "Passive Internal Rotation", :difficulty => "Easy")
+
+shoulder.texercises.create(:name => "Passive External Rotation", :difficulty => "Easy")
+
+shoulder.texercises.create(:name => "Sleeper Stretch", :difficulty => "Easy")
+
+shoulder.texercises.create(:name => "Standing Row", :difficulty => "Easy")
+
+ankle.texercises.create(:name => "Dorsiflexion", :difficulty => "Easy")
+
+ankle.texercises.create(:name => "Plantar Flexion", :difficulty => "Easy")
+
+ankle.texercises.create(:name => "Scissor hops", :difficulty => "Easy")
+
+ankle.texercises.create(:name => "One leg mini squats", :difficulty => "Easy")
+
+ankle.texercises.create(:name => "Heel toe balance", :difficulty => "Easy")
+
+calf.texercises.create(:name => "Donkey Calf Raise", :difficulty => "Easy")
+
+calf.texercises.create(:name => "Seated Calf Extension", :difficulty => "Easy")
+
+calf.texercises.create(:name => "45 degree Calf Press", :difficulty => "Easy")
+
+calf.texercises.create(:name => "45 degree Calf Raises", :difficulty => "Easy")
+
+calf.texercises.create(:name => "Jump Rope", :difficulty => "Easy")
+
+calf.texercises.create(:name => "Single Leg Calf Raises", :difficulty => "Easy")
 
 ######## SEEDED TRAINER1 -- Login => Trainerman@mit.edu : Trainerman ######## 
 trainerman = Trainer.create(:name => "Trainerman", :email => "Trainerman@mit.edu", :password => "Trainerman", :password_confirmation => "Trainerman")
@@ -46,7 +113,7 @@ brock = trainerman.athletes.create(:firstname => "Brock", :lastname => "Lesnar",
 				 :weight => 285, :hometown => "Webster, SD", :status => "injured")
 
 workout = kobe.create_workout(:name => "test")
-ex1 = workout.exercises.create(:name => 'Lunges', :'week1sets' => 3, :'week2sets' => 3, :'week3sets' => 3, :'week4sets' => 3,
+test_ex1 = workout.exercises.create(:name => 'Lunges', :'week1sets' => 3, :'week2sets' => 3, :'week3sets' => 3, :'week4sets' => 3,
  			:'week5sets' => 3, :'week1reps' => 10, :'week2reps' => 10, :'week3reps' => 10, :'week4reps' => 10, 
 			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Knee') 
 
