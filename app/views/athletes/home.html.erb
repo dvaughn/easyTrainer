@@ -327,13 +327,18 @@ var addNote = function(color,message,date) {
 //**********************************
 //Changing an exercise
 $(document).ready(function() {
-$.get({
-	url: "wtf",
+$.post({
+	url: "/exercises/delete",
 	dataType: 'json',
-	data: "{'exercise': {'id':1}}",
+	beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+	data: {'exercise': '5'},
 	}).done(function() {
 		console.log('Deleted');
 	});
+
+	$.post("/exercises/delete", {'exercise': {'id':1}} ).done(function(data) {
+		console.log(data);
+		});
 });
 
 //Updating a sets and reps
