@@ -126,6 +126,13 @@ achilles_overview = "During the Golden State warriors game on 4/12, Kobe sustain
 kobe.injuries.create(:name => "Torn Achilles Tendon", :day => 12, :month => 4, :year => 2013, :date => DateTime.new(2013, 4, 12), :overview => achilles_overview)
 
 
+############# KOBE's NOTES ################
+kobe.notes.create(:text => "Hey doc, Just wanted you to know that I broke the 10000 lb stretchy bands again")
+kobe.notes.create(:text => "I heard this loud pop in my heel, weird.")
+kobe.notes.create(:text => "Apologize to Kanye West for wasting 2 million dollars of his time")
+
+
+
 
 
 

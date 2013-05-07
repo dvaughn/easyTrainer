@@ -54,7 +54,7 @@ $(document).ready(function() {
 		<%= form_for @athlete, :url => { :action=> "create" }, :html => { :method => "POST" }, :class => "form-horizontal" do |f| %>
 
 
-			<%= f.text_field :username %>
+			
 
 			<%= f.label "Password:" %>
 			<%= f.password_field :password %>
@@ -69,21 +69,13 @@ $(document).ready(function() {
 			<label class="control-label" for="inputName">Name</label>
 			<div class="controls">
 				<input type="text" id="inputName" placeholder="Joe Smith">
+				<%= f.text_field :sport, :placeholder => "Basketball" %>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="inputPassword">Sport</label>
 			<div class="controls">
-				<select>
-					<option>Men's Basketball</option>
-					<option>Women's Basketball</option>
-					<option>Men's Lacrosse</option>
-					<option>Women's Field Hockey</option>
-					<option>Men's Track and Field</option>
-					<option>Women's Track and Field</option>
-					<option>Men's Football</option>
-					<option>Women's Rugby</option>
-				</select>
+				<%= f.text_field :sport, :placeholder => "Basketball" %>
 			</div>
 		</div>
 		<div class="control-group">
