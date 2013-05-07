@@ -68,5 +68,6 @@ class AthletesController < ApplicationController
       end
       @athlete = Athlete.find(aid)
     end
+    @bodyparts = Bodypart.all
   end
 end
