@@ -127,9 +127,10 @@ kobe.injuries.create(:name => "Torn Achilles Tendon", :day => 12, :month => 4, :
 
 
 ############# KOBE's NOTES ################
-kobe.notes.create(:text => "Hey doc, Just wanted you to know that I broke the 10000 lb stretchy bands again")
-kobe.notes.create(:text => "I heard this loud pop in my heel, weird.")
-kobe.notes.create(:text => "Apologize to Kanye West for wasting 2 million dollars of his time")
+kobe.notes.create(:text => "Hey doc, Just wanted you to know that I broke the 10000 lb stretchy bands again", :color => "Blue")
+kobe.notes.create(:text => "I heard this loud pop in my heel, weird.", :color => "Red")
+kobe.notes.create(:text => "Apologize to Kanye West for wasting 2 million dollars of his time", :color => "Yellow")
+kobe.notes.create(:text => "Yo doc, remember when I dropped 81 points?", :color => "Green")
 
 
 

@@ -2,7 +2,8 @@ class NotesController < ApplicationController
   def create
     aid = session[:athlete_id]
     text = params[:note][:text]
-    @note = Athlete.find(aid).notes.create(:text => text)
+    color = params[:note][:color]
+    @note = Athlete.find(aid).notes.create(:text => text, :color => color)
   end
 
   def delete

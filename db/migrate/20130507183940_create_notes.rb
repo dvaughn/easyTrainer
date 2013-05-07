@@ -2,6 +2,7 @@ class CreateNotes < ActiveRecord::Migration
   def up
     create_table 'notes' do |t|
       t.text 'text'
+      t.string 'color'
       t.timestamps
       t.references :athlete
     end

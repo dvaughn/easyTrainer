@@ -6,6 +6,7 @@ class CreateInjuries < ActiveRecord::Migration
       t.integer 'month'
       t.integer 'year'
       t.datetime 'date'
+      t.text 'overview'
       t.references :athlete
     end
   end

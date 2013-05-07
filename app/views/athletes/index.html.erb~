@@ -69,7 +69,7 @@ $(document).ready(function() {
 			<label class="control-label" for="inputName">Name</label>
 			<div class="controls">
 				<input type="text" id="inputName" placeholder="Joe Smith">
-				
+				<%= f.text_field :name, :placeholder => "Basketball" %>
 			</div>
 		</div>
 		<div class="control-group">

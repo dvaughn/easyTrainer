@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20130507195851) do
 
   create_table "notes", :force => true do |t|
     t.text     "text"
+    t.string   "color"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "athlete_id"
