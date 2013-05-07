@@ -28,41 +28,28 @@ foot = Bodypart.create(:name => "Foot")
 
 ######## SEEDED EXERCISES #########
 
-knee.texercises.create(:name => "One-Legged Squats", :difficulty => "Hard")
 quad.texercises.create(:name => "One-Legged Squats", :difficulty => "Hard")
 
 calf.texercises.create(:name => "Calf Raises", :difficulty => "Easy")
 
 knee.texercises.create(:name => "Lunges", :difficulty => "Medium")
-quad.texercises.create(:name => "Lunges", :difficulty => "Medium")
-hamstring.texercises.create(:name => "Lunges", :difficulty => "Medium")
 
 knee.texercises.create(:name => "Side Squats", :difficulty => "Medium")
-quad.texercises.create(:name => "Side Squats", :difficulty => "Medium")
 
 knee.texercises.create(:name => "Clean and Jerk", :difficulty => "Medium")
-quad.texercises.create(:name => "Clean and Jerk", :difficulty => "Medium")
 
-ankle.texercises.create(:name => "Clean and Jerk", :difficulty => "Medium")
-foot.texercises.create(:name => "Clean and Jerk", :difficulty => "Medium")
-
-knee.texercises.create(:name => "Quadricep Stretch", :difficulty => "Easy")
 quad.texercises.create(:name => "Quadricep Stretch", :difficulty => "Easy")
 
-knee.texercises.create(:name => "Wall slide", :difficulty => "Easy")
 hamstring.texercises.create(:name => "Wall slide", :difficulty => "Easy")
 
-knee.texercises.create(:name => "Hamstring Curls", :difficulty => "Easy")
 hamstring.texercises.create(:name => "Hamstring Curls", :difficulty => "Easy")
 
 quad.texercises.create(:name => "Box Squat", :difficulty => "Easy")
 
-quad.texercises.create(:name => "Jump Squat", :difficulty => "Medium")
 ankle.texercises.create(:name => "Jump Squat", :difficulty => "Medium")
 
 shoulder.texercises.create(:name => "Pendulum", :difficulty => "Easy")
 
-shoulder.texercises.create(:name => "Crossover Arm Stretch", :difficulty => "Easy")
 arm.texercises.create(:name => "Crossover Arm Stretch", :difficulty => "Easy")
 
 shoulder.texercises.create(:name => "Passive Internal Rotation", :difficulty => "Easy")
