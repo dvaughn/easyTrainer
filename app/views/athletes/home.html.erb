@@ -3,6 +3,19 @@
 //**Initialize Workout Chart********
 //**********************************
 $(document).ready(function() {
+	<% @notes.each do |note| %>
+		console.log("<%= note.text %>");
+	<% end %>
+
+
+	<% @bodyparts.each do |bodypart| %>
+		<% bodypart.texercises.each do |texercise| %>
+		eo = new exerciseobj("<%= texercise.id %>","<%= texercise.name %>","<%= texercise.difficulty %>",["<%= texercise.bodypart.name %>"],3,10,3,10,3,10,3,10,3,10);
+		exercises.push(eo);
+		<% end %>
+	<% end %>
+	
+	
 	<% @bodyparts.each do |bodypart| %>
 		<% bodypart.texercises.each do |texercise| %>
 		eo = new exerciseobj("<%= texercise.id %>","<%= texercise.name %>","<%= texercise.difficulty %>",["<%= texercise.bodypart.name %>"],3,10,3,10,3,10,3,10,3,10);
