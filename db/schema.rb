@@ -11,19 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507195851) do
+ActiveRecord::Schema.define(:version => 20130507213921) do
 
   create_table "athletes", :force => true do |t|
-    t.string  "firstname"
-    t.string  "lastname"
-    t.string  "email"
-    t.string  "sport"
-    t.integer "height"
-    t.integer "weight"
-    t.string  "hometown"
-    t.string  "status"
-    t.integer "trainer_id"
-    t.string  "filepicker_url"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "sport"
+    t.integer  "height"
+    t.integer  "weight"
+    t.string   "hometown"
+    t.string   "status"
+    t.integer  "trainer_id"
+    t.string   "filepicker_url"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
   end
 
   create_table "bodyparts", :force => true do |t|

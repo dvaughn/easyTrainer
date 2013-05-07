@@ -18,20 +18,12 @@ class AthletesController < ApplicationController
   def create
     #Variable setting
     uid = session[:trainer_id]
-    firstname = params[:athlete][:firstname]
-    lastname = params[:athlete][:lastname]
-    email = params[:athlete][:email]
-    sport = params[:athlete][:sport]
-    height = params[:athlete][:height]
-    weight = params[:athlete][:weight]
-    hometown = params[:athlete][:hometown]
-    status = params[:athlete][:status]
 
-    @athlete = Trainer.find(uid).athletes.create(:firstname => firstname, :lastname => lastname, :email => email,
-						:sport => sport, :height => height, :weight => weight, 
-						:hometown => hometown, :status => status)
+    @athlete = Trainer.find(uid).athletes.create( params[:athlete] )
     @workout = Workout.create(:name => "main")
     @athlete.workout = @workout
+    @athlete.injuries.create(:name => "Healthy", :day => 1, :month => 1, :year => 2013, :date => DateTime.current, :overview => "Athlete is initially healthy")
+    session[:athlete_id] = @athlete.id
     redirect_to :controller => :athletes, :action => :home
   end
 

@@ -88,8 +88,18 @@ trainerman = Trainer.create(:name => "Trainerman", :email => "Trainerman@mit.edu
 ######## SEEDED TRAINER1's ATHLETES #########
 kobe = trainerman.athletes.create(:firstname => "Kobe", :lastname => "Bryant", :email => "kobebryant@mit.edu", :sport => "Basketball", :height => 78,
 				 :weight => 205, :hometown => "Philadelphia, PA", :status => "injured")
+kobepic = File.open("/public/images/kobe.jpg")
+kobe.pic = kobepic
+kobepic.close
+kobe.save!
+
 john = trainerman.athletes.create(:firstname => "John", :lastname => "Wenzel", :email => "jwenzel@mit.edu", :sport => "Football", :height => 74,
 				 :weight => 215, :hometown => "Mandeville, LA", :status => "healthy")
+johnpic = File.open("/public/images/kobe.jpg")
+john.pic = johnpic
+johnpic.close
+john.save!
+
 derek = trainerman.athletes.create(:firstname => "Derek", :lastname => "Jeter", :email => "djeter@mit.edu", :sport => "Baseball", :height => 70,
 				 :weight => 205, :hometown => "Whocaresville, NY", :status => "injured")
 dale = trainerman.athletes.create(:firstname => "Dale", :lastname => "Earnhardt", :email => "earnhardt@mit.edu", :sport => "Nascar", :height => 76,

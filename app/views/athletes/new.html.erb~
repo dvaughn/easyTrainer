@@ -56,13 +56,19 @@ $(document).ready(function() {
 			<div class="control-group">
 				<label class="control-label" for="inputFirstname">Name</label>
 				<div class="controls">
-					<%= f.text_field :name, :placeholder => "Joe Smith" %>
+					<%= f.text_field :firstname, :placeholder => "Joe" %>
 				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="inputLastname">Name</label>
 				<div class="controls">
-					<%= f.text_field :name, :placeholder => "Joe Smith" %>
+					<%= f.text_field :lastname, :placeholder => "Smith" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputLastname">Email</label>
+				<div class="controls">
+					<%= f.text_field :email, :placeholder => "joesmith@mit.edu" %>
 				</div>
 			</div>
 			<div class="control-group">
@@ -90,9 +96,9 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="inputPicture">Hometown</label>
+				<label class="control-label" for="inputPicture">Picture</label>
 				<div class="controls">
-					<%= f.filepicker_field :filepicker_url %>
+					<%= f.file_field :pic %>
 				</div>
 			</div>
 			<div class="control-group">
@@ -101,6 +107,7 @@ $(document).ready(function() {
 				</div>
 			</div>
 		<% end %>
+ 		<%= image_tag @athletea.pic.url %>
 	</div>
 	<div class="clear"></div>
 </div>
