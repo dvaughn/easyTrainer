@@ -54,7 +54,7 @@
 }
 .profile .profilebox {
 	float: right;
-	height: 175px;
+	height: 135px;
 	width: 280px;
 	margin-right: 5px;
 	margin-bottom: 0px;
@@ -109,5 +109,15 @@
 	cursor: pointer;
 }
 .addnotebutton {
+	float: right;
+}
+.tabledate {
+	width: 150px;
+}
+.tableinjury {
+	width: 130px;
+}
+.injurybar {
+	padding: 5px;
 	float: right;
 }
