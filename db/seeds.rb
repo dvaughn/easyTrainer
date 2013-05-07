@@ -117,3 +117,45 @@ test_ex1 = workout.exercises.create(:name => 'Lunges', :'week1sets' => 1, :'week
  			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
 			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Knee') 
 
+
+########## KOBE's INJURY REPORT #############
+ankle_overview = "Today Kobe bryant was shooting around when he rolled his ankle while trying to perform a triple lindy fadeaway dunk. His foot landed on the basketball goal at the wrong angle causing a grade 2 high ankle sprain. He will need to stay off of it for at least a week."
+kobe.injuries.create(:name => "High Ankle Sprain", :day => 24, :month => 7, :year => 2012, :date => DateTime.new(2012, 7, 24), :overview => ankle_overview)
+
+healthy_overview = "Kobe is back to his regular self, achieving success beyond success."
+kobe.injuries.create(:name => "Healthy", :day => 13, :month => 12, :year => 2012, :date => DateTime.new(2012, 12, 13), :overview => healthy_overview)
+
+concussion_overview = "Kobe not only went hard in the paint last night, but he also went hard into the bar.... with his head. Although there aren't typical workouts for concussions we want to trick Kobe into believing that it isn't his head that is hurt"
+kobe.injuries.create(:name => "Concussion", :day => 13, :month => 12, :year => 2012, :date => DateTime.new(2012, 12, 13), :overview => concussion_overview)
+
+kobe.injuries.create(:name => "Healthy", :day => 24, :month => 1, :year => 2013, :date => DateTime.new(2013, 1, 24), :overview => healthy_overview)
+
+bicep_overview = "Kobe got a little cocky and forgot his age when trying to show Dwight Howard how to properly curl 100 lb. weights. He received a partial torn bicep and a possible sports hernia."
+kobe.injuries.create(:name => "Torn Bicep", :day => 10, :month => 2, :year => 2013, :date => DateTime.new(2013, 2, 10), :overview => bicep_overview)
+
+kobe.injuries.create(:name => "Healthy", :day => 23, :month => 3, :year => 2013, :date => DateTime.new(2013, 3, 23), :overview => healthy_overview)
+
+achilles_overview = "During the Golden State warriors game on 4/12, Kobe sustained a 'pop' sound after cutting to the basket. Bryant asked Barnes if he had kicked him in the leg. When Barnes said he hadn't, Bryant said he knew that a major injury had occurred. An MRI revealed a torns achilles tendon"
+kobe.injuries.create(:name => "Torn Achilles Tendon", :day => 12, :month => 4, :year => 2013, :date => DateTime.new(2013, 4, 12), :overview => achilles_overview)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

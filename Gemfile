@@ -8,6 +8,8 @@ gem 'sqlite3'
 
 gem 'bcrypt-ruby', '3.0.1'
 gem 'bootstrap-sass', '~> 2.3.1.0'
+gem "paperclip", "~> 3.0"
+
 
 
 # Gems used only for assets and not required
