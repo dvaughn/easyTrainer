@@ -221,7 +221,7 @@ var chartfunctionality = function() {
 			for (var a=0;a < exercises.length; a++) {
 				if (exercises[a].name === name) {
 					exercises[a].included = true;
-					createExercise(0,exercises[a].name,'3','3','3','3','3','15','15','15','15','15');
+					createExercise(exercises[a].name,'3','3','3','3','3','15','15','15','15','15');
 				}
 			}
 			$(ui.draggable).remove();
