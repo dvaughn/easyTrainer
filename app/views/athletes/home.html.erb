@@ -2,17 +2,22 @@
 //**********************************
 //**Initialize Workout Chart********
 //**********************************
-
 $(document).ready(function() {
+	<% @bodyparts.each do |bodypart| %>
+		<% bodypart.texercises.each do |texercise| %>
+		eo = new exerciseobj("<%= texercise.id %>","<%= texercise.name %>","<%= texercise.difficulty %>",["<%= texercise.bodypart.name %>"],3,10,3,10,3,10,3,10,3,10);
+		exercises.push(eo);
+		<% end %>
+	<% end %>
+	
 	workout = [];
 	<% @athlete.workout.exercises.each do |exercise| %>
-		console.log("<%= exercise.id %>");
 		var eo = new exerciseobj("<%= exercise.id %>","<%= exercise.name %>","<%= exercise.difficulty %>",["<%= exercise.bodypart %>"],"<%= exercise.week1sets %>","<%= exercise.week2sets %>","<%= exercise.week3sets %>","<%= exercise.week4sets %>","<%= exercise.week5sets %>","<%= exercise.week1reps %>","<%= exercise.week2reps %>","<%= exercise.week3reps %>","<%= exercise.week4reps %>","<%= exercise.week5reps %>");
 		workout.push(eo);
-		console.log(eo.week1sets)
 	<% end %>
-	for (var a=0;a < exercises.length; a++) {
-		for (var b=0;b < workout.length; b++) {
+	console.log(exercises);
+	for (var a=0; a < exercises.length; a++) {
+		for (var b=0; b < workout.length; b++) {
 			if (exercises[a].name === workout[b].name) {
 				exercises[a] = workout[b];
 				exercises[a].included = true;
@@ -27,7 +32,7 @@ $(document).ready(function() {
 //*******Exercise Object ***********
 //**********************************
 function exerciseobj(id,name,difficulty,bodyareas,week1sets,week2sets,week3sets,week4sets,week5sets,week1reps,week2reps,week3reps,week4reps,week5reps) {
-	this.id;
+	this.id = id;
 	this.name = name;
 	this.difficulty = difficulty;
 	this.bodyarea = bodyareas;
@@ -67,10 +72,7 @@ function exerciseobj(id,name,difficulty,bodyareas,week1sets,week2sets,week3sets,
 
 var type;
 var exercises = [];
-exercises.push(new exerciseobj('60','One-Legged Squats','Easy',['Knee','Quad'],1,10,2,11,3,12,4,13,5,14));
-exercises.push(new exerciseobj('61','Calf Raises','Easy',['Calf'],1,10,2,11,3,12,4,13,5,14));
-exercises.push(new exerciseobj('62','Lunges','Easy',['Knee','Quad','Hamstring'],1,10,2,11,3,12,4,13,5,14));
-exercises.push(new exerciseobj('63','Side Squats','Easy',['Knee','Quad'],1,10,2,11,3,12,4,13,5,14));
+
 // exercises.push(new exerciseobj('Clean and Jerk','Easy',['Quad','Shoulder']));
 // exercises.push(new exerciseobj('Ankle Rolls','Easy',['Ankle','Foot']));
 // exercises.push(new exerciseobj('Quadricep Stretch','Easy',['Knee','Quad']));
@@ -221,7 +223,7 @@ var chartfunctionality = function() {
 			for (var a=0;a < exercises.length; a++) {
 				if (exercises[a].name === name) {
 					exercises[a].included = true;
-					createExercise(exercises[a].name,'3','3','3','3','3','15','15','15','15','15');
+					createExercise(exercises[a].name,'3','3','3','3','3','15','15','15','15','15',exercises[a]);
 				}
 			}
 			$(ui.draggable).remove();
@@ -375,11 +377,11 @@ var updateExercise = function(id,name,w1s,w2s,w3s,w4s,w5s,w1r,w2r,w3r,w4r,w5r) {
 	});
 };
 
-var createExercise = function(name,w1s,w2s,w3s,w4s,w5s,w1r,w2r,w3r,w4r,w5r) {
+var createExercise = function(name,w1s,w2s,w3s,w4s,w5s,w1r,w2r,w3r,w4r,w5r,handle) {
 	$.post("/exercises/create.json", {'exercise': {'name':name,'week1sets':w1s,'week2sets':w2s,'week3sets':w3s,
 	'week4sets':w4s,'week5sets':w5s,'week1reps':w1r,'week2reps':w2r,'week3reps':w3r,'week4reps':w4r,'week5reps':w5r}})
 	.done(function(data) {
-		//Will pass back the ID
+		handle.id = data.id;
 	});
 };
 
