@@ -54,7 +54,13 @@ $(document).ready(function() {
 
 		
 			<div class="control-group">
-				<label class="control-label" for="inputName">Name</label>
+				<label class="control-label" for="inputFirstname">Name</label>
+				<div class="controls">
+					<%= f.text_field :name, :placeholder => "Joe Smith" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputLastname">Name</label>
 				<div class="controls">
 					<%= f.text_field :name, :placeholder => "Joe Smith" %>
 				</div>
