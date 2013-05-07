@@ -6,7 +6,8 @@
 $(document).ready(function() {
 	workout = [];
 	<% @athlete.workout.exercises.each do |exercise| %>
-		var eo = new exerciseobj("<%= exercise.name %>","<%= exercise.difficulty %>",["<%= exercise.bodypart %>"],"<%= exercise.week1sets %>","<%= exercise.week2sets %>","<%= exercise.week3sets %>","<%= exercise.week4sets %>","<%= exercise.week5sets %>","<%= exercise.week1reps %>","<%= exercise.week2reps %>","<%= exercise.week1reps %>","<%= exercise.week3reps %>","<%= exercise.week4reps %>","<%= exercise.week5reps %>");
+		console.log("<%= exercise.id %>");
+		var eo = new exerciseobj("<%= exercise.id %>","<%= exercise.name %>","<%= exercise.difficulty %>",["<%= exercise.bodypart %>"],"<%= exercise.week1sets %>","<%= exercise.week2sets %>","<%= exercise.week3sets %>","<%= exercise.week4sets %>","<%= exercise.week5sets %>","<%= exercise.week1reps %>","<%= exercise.week2reps %>","<%= exercise.week3reps %>","<%= exercise.week4reps %>","<%= exercise.week5reps %>");
 		workout.push(eo);
 		console.log(eo.week1sets)
 	<% end %>
@@ -25,7 +26,8 @@ $(document).ready(function() {
 //**********************************
 //*******Exercise Object ***********
 //**********************************
-function exerciseobj(name,difficulty,bodyareas,week1sets,week2sets,week3sets,week4sets,week5sets,week1reps,week2reps,week3reps,week4reps,week5reps) {
+function exerciseobj(id,name,difficulty,bodyareas,week1sets,week2sets,week3sets,week4sets,week5sets,week1reps,week2reps,week3reps,week4reps,week5reps) {
+	this.id;
 	this.name = name;
 	this.difficulty = difficulty;
 	this.bodyarea = bodyareas;
@@ -34,7 +36,7 @@ function exerciseobj(name,difficulty,bodyareas,week1sets,week2sets,week3sets,wee
 	this.week2sets = week2sets;
 	this.week3sets = week3sets;
 	this.week4sets = week4sets;
-	this.week5sets = week4sets;
+	this.week5sets = week5sets;
 	this.week1reps = week1reps;
 	this.week2reps = week2reps;
 	this.week3reps = week3reps;
@@ -65,10 +67,10 @@ function exerciseobj(name,difficulty,bodyareas,week1sets,week2sets,week3sets,wee
 
 var type;
 var exercises = [];
-exercises.push(new exerciseobj('One-Legged Squats','Easy',['Knee','Quad'],1,10,2,11,3,12,4,13,5,14));
-exercises.push(new exerciseobj('Calf Raises','Easy',['Calf'],1,10,2,11,3,12,4,13,5,14));
-exercises.push(new exerciseobj('Lunges','Easy',['Knee','Quad','Hamstring'],1,10,2,11,3,12,4,13,5,14));
-exercises.push(new exerciseobj('Side Squats','Easy',['Knee','Quad'],1,10,2,11,3,12,4,13,5,14));
+exercises.push(new exerciseobj('60','One-Legged Squats','Easy',['Knee','Quad'],1,10,2,11,3,12,4,13,5,14));
+exercises.push(new exerciseobj('61','Calf Raises','Easy',['Calf'],1,10,2,11,3,12,4,13,5,14));
+exercises.push(new exerciseobj('62','Lunges','Easy',['Knee','Quad','Hamstring'],1,10,2,11,3,12,4,13,5,14));
+exercises.push(new exerciseobj('63','Side Squats','Easy',['Knee','Quad'],1,10,2,11,3,12,4,13,5,14));
 // exercises.push(new exerciseobj('Clean and Jerk','Easy',['Quad','Shoulder']));
 // exercises.push(new exerciseobj('Ankle Rolls','Easy',['Ankle','Foot']));
 // exercises.push(new exerciseobj('Quadricep Stretch','Easy',['Knee','Quad']));
@@ -219,6 +221,7 @@ var chartfunctionality = function() {
 			for (var a=0;a < exercises.length; a++) {
 				if (exercises[a].name === name) {
 					exercises[a].included = true;
+					createExercise(0,exercises[a].name,'3','3','3','3','3','15','15','15','15','15');
 				}
 			}
 			$(ui.draggable).remove();
@@ -234,6 +237,7 @@ var chartfunctionality = function() {
 		for (var a=0;a < exercises.length; a++) {
 			if (exercises[a].name === name) {
 				exercises[a].included = false;
+				deleteExercise(parseInt(exercises[a].id));
 			}
 		}
 		drawExercises(type);
@@ -260,8 +264,25 @@ var chartfunctionality = function() {
 		$(this).parent().mouseleave(function() {
 			var handler = $(this).children('.editing');
 			var children = $(handler).children();
+			console.log(children);
 			$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
 			$(handler).removeClass('editing');
+			var rowchart = $(this);
+			$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
+			$(handler).removeClass('editing');
+			exerciseTitle = $(handler.parent().children()[0]).html();
+			for (var a=0; a< exercises.length; a++) {
+				if (exercises[a].name === exerciseTitle) {
+					var exerciseh = rowchart.children('.exercise1');
+					var tspl = [0,0,0,0,0,0,0,0,0,0]
+					for ( var b=0; b < exerciseh.length; b++)  {
+							var tmp = $(exerciseh[b]).html().split(' x ');
+							tspl[b] = tmp[0];
+							tspl[5+b] = tmp[1];
+					}	
+					updateExercise(exercises[a].id,exercises[a].name,tspl[0],tspl[1],tspl[2],tspl[3],tspl[4],tspl[5],tspl[6],tspl[7],tspl[8],tspl[9]);
+				}	
+			}
 		});
 	}); 
 	
@@ -278,9 +299,24 @@ $(document).keypress(function(event) {
 		handle = currentsetsreps;
 		var handler = $(handle).parent().children('.editing');
 		var children = $(handler).children();
+		var rowchart = handle.parent();
+		if ($(children[0]).val().length === 0) { $(children[0]).val('3')};
+		if ($(children[1]).val().length === 0) { $(children[1]).val('3')};
 		$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
 		$(handler).removeClass('editing');
-		console.log(handle);
+		exerciseTitle = $(handler.parent().children()[0]).html();
+		for (var a=0; a< exercises.length; a++) {
+			if (exercises[a].name === exerciseTitle) {
+				var exerciseh = rowchart.children('.exercise1');
+				var tspl = [0,0,0,0,0,0,0,0,0,0]
+				for ( var b=0; b < exerciseh.length; b++)  {
+						var tmp = $(exerciseh[b]).html().split(' x ');
+						tspl[b] = tmp[0];
+						tspl[5+b] = tmp[1];
+				}	
+				updateExercise(exercises[a].id,exercises[a].name,tspl[0],tspl[1],tspl[2],tspl[3],tspl[4],tspl[5],tspl[6],tspl[7],tspl[8],tspl[9]);
+			}	
+		}
     };
 });
 
@@ -326,27 +362,26 @@ var addNote = function(color,message,date) {
 //***Front to Back End Calls *******
 //**********************************
 //Changing an exercise
-$(document).ready(function() {
-$.post({
-	url: "/exercises/delete",
-	dataType: 'json',
-	beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-	data: {'exercise': '5'},
-	}).done(function() {
-		console.log('Deleted');
-	});
-
-	$.post("/exercises/delete", {'exercise': {'id':1}} ).done(function(data) {
+var deleteExercise = function(exerciseid) {
+	$.post("/exercises/delete.json", {'exercise': {'id':exerciseid}} ).done(function(data) {
 		console.log(data);
-		});
-});
+	});
+};
+var updateExercise = function(id,name,w1s,w2s,w3s,w4s,w5s,w1r,w2r,w3r,w4r,w5r) {
+	$.post("/exercises/update.json", {'exercise': {'id':id,'name':name,'week1sets':w1s,'week2sets':w2s,'week3sets':w3s,
+	'week4sets':w4s,'week5sets':w5s,'week1reps':w1r,'week2reps':w2r,'week3reps':w3r,'week4reps':w4r,'week5reps':w5r}})
+	.done(function(data) {
+		console.log(data);
+	});
+};
 
-//Updating a sets and reps
-
-
-
-
-//
+var createExercise = function(name,w1s,w2s,w3s,w4s,w5s,w1r,w2r,w3r,w4r,w5r) {
+	$.post("/exercises/create.json", {'exercise': {'name':name,'week1sets':w1s,'week2sets':w2s,'week3sets':w3s,
+	'week4sets':w4s,'week5sets':w5s,'week1reps':w1r,'week2reps':w2r,'week3reps':w3r,'week4reps':w4r,'week5reps':w5r}})
+	.done(function(data) {
+		//Will pass back the ID
+	});
+};
 
 
 

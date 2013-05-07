@@ -113,7 +113,7 @@ brock = trainerman.athletes.create(:firstname => "Brock", :lastname => "Lesnar",
 				 :weight => 285, :hometown => "Webster, SD", :status => "injured")
 
 workout = kobe.create_workout(:name => "test")
-test_ex1 = workout.exercises.create(:name => 'Lunges', :'week1sets' => 3, :'week2sets' => 3, :'week3sets' => 3, :'week4sets' => 3,
- 			:'week5sets' => 3, :'week1reps' => 10, :'week2reps' => 10, :'week3reps' => 10, :'week4reps' => 10, 
+test_ex1 = workout.exercises.create(:name => 'Lunges', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+ 			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
 			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Knee') 
 
