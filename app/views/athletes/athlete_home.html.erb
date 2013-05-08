@@ -1,0 +1,574 @@
+<script>
+//**********************************
+//**Initialize Workout Chart********
+//**********************************
+$(document).ready(function() {
+	var height = parseInt("<%= @athlete.height %>");
+	var inches = height % 12;
+	var feet = Math.floor(height/12);
+	$('.heightweight').html(feet+"'"+inches+'" '+' <%= @athlete.weight %> lbs');
+	
+	
+	<% @notes.each do |note| %>
+		var date = "<%= note.created_at.localtime %>";
+		var today = new Date(date.split(' ')[0]);
+		today = String(today).split(" ");
+		today = today[0]+" "+today[1]+" "+today[2]
+		addNote("<%= note.color %>","<%= note.text %>",today);
+	<% end %>
+
+	<% @injuries.each do |injury| %>
+		var date = "<%= injury.date %>";
+		var today = new Date(date.split(' ')[0]);
+		today = String(today).split(" ");
+		today = today[0]+" "+today[1]+" "+today[2]+" "+today[3]
+		addInjury(today,"<%= injury.name %>","<%= injury.overview %>");
+	<% end %>
+	
+	
+	<% @bodyparts.each do |bodypart| %>
+		<% bodypart.texercises.each do |texercise| %>
+		eo = new exerciseobj("<%= texercise.id %>","<%= texercise.name %>","<%= texercise.difficulty %>",["<%= texercise.bodypart.name %>"],3,10,3,10,3,10,3,10,3,10);
+		exercises.push(eo);
+		<% end %>
+	<% end %>
+	
+	workout = [];
+	<% @athlete.workout.exercises.each do |exercise| %>
+		var eo = new exerciseobj("<%= exercise.id %>","<%= exercise.name %>","<%= exercise.difficulty %>",["<%= exercise.bodypart %>"],"<%= exercise.week1sets %>","<%= exercise.week2sets %>","<%= exercise.week3sets %>","<%= exercise.week4sets %>","<%= exercise.week5sets %>","<%= exercise.week1reps %>","<%= exercise.week2reps %>","<%= exercise.week3reps %>","<%= exercise.week4reps %>","<%= exercise.week5reps %>");
+		workout.push(eo);
+	<% end %>
+	for (var a=0; a < exercises.length; a++) {
+		for (var b=0; b < workout.length; b++) {
+			if (exercises[a].name === workout[b].name) {
+				exercises[a] = workout[b];
+				exercises[a].included = true;
+				$('.drophere').css('display','none');
+			}
+		}
+	}
+	drawChart();
+});
+
+//**********************************
+//*******Exercise Object ***********
+//**********************************
+function exerciseobj(id,name,difficulty,bodyareas,week1sets,week2sets,week3sets,week4sets,week5sets,week1reps,week2reps,week3reps,week4reps,week5reps) {
+	this.id = id;
+	this.name = name;
+	this.difficulty = difficulty;
+	this.bodyarea = bodyareas;
+	this.included = false;
+	this.week1sets = week1sets;
+	this.week2sets = week2sets;
+	this.week3sets = week3sets;
+	this.week4sets = week4sets;
+	this.week5sets = week5sets;
+	this.week1reps = week1reps;
+	this.week2reps = week2reps;
+	this.week3reps = week3reps;
+	this.week4reps = week4reps;
+	this.week5reps = week5reps;
+	
+	this.getweeksets = function(num) {
+		if (num === 1) { return this.week1sets};
+		if (num === 2) { return this.week2sets};
+		if (num === 3) { return this.week3sets};
+		if (num === 4) { return this.week4sets};
+		if (num === 5) { return this.week5sets};
+	}
+	this.getweekreps = function(num) {
+		if (num === 1) { return this.week1reps};
+		if (num === 2) { return this.week2reps};
+		if (num === 3) { return this.week3reps};
+		if (num === 4) { return this.week4reps};
+		if (num === 5) { return this.week5reps};
+	}
+	
+	
+}
+
+//**********************************
+//**Generate Exercises**************
+//**********************************
+
+var type;
+var exercises = [];
+
+//**********************************
+//**Add All Exercises to List*******
+//**********************************
+$(document).ready(function() {	
+	for (var a=0;a < exercises.length; a++) {
+		b = exercises[a];
+		var container = $('.exercise-container');
+		var divcontent = $('<div class="exercise exercisedrag"><h5>'+b.name+'</h5><p> Difficulty: <span>'+b.difficulty+'</span></p>');
+		container.append(divcontent);
+	};
+});
+
+var drawExercises = function(area) {
+	$('.exercise-container').empty();
+	for (var a=0;a < exercises.length; a++) {
+		b = exercises[a];
+		for (var c=0;c < b.bodyarea.length; c++) {
+			if (b.bodyarea[c] === area && b.included === false) {
+				var container = $('.exercise-container');
+				var divcontent = $('<div class="exercise exercisedrag"><h5>'+b.name+'</h5><p> Difficulty: <span>'+b.difficulty+'</span></p>');
+				container.append(divcontent);
+			}
+		}
+	};
+	chartfunctionality();
+}
+
+var drawChart = function() {
+	for (var a=0; a < exercises.length; a++) {
+		if (exercises[a].included == true) {
+			b = exercises[a];
+			var header = b.name;
+			var title = $("<div class='exercise-title'>"+header+"</div>");
+			var row = $("<div class='chart-row'></div>");
+			var deletediv = $("<div class='delete'>x</div>");
+			row.append(title);
+			console.log(b);
+			for (var c=0; c < 5; c++){
+				var columns = $("<div class='exercise1 setsrep'>"+b.getweeksets(c+1)+" x "+b.getweekreps(c+1)+"</div>");
+				row.append(columns);
+			};
+			row.append(deletediv);
+			$('.chart-body').prepend(row);
+		};
+	};
+	chartfunctionality();
+}
+//**********************************
+//****Sidebar Functionality*********
+//**********************************
+
+$(document).ready(function() {
+	$('.choose-exercise').click(function() {
+		switchviews();
+	});
+	chartfunctionality();
+	
+	$('.newexercise').click(function() {
+		$('.drophere').html("<h1> Drag and Drop Exercsises Here</h1>");
+		var area = $(this).children().html();
+		type = area;
+		var sidebar_exercises = [];
+		$('.exercise-container').empty();
+		drawExercises(type);
+		switchviews();
+		chartfunctionality();
+	});
+});
+
+var switchviews = function() {
+	if ($('.selectnewexercise').is(':visible')) {
+		$('.selectnewexercise').slideToggle('slow',function() {
+			$('.exercise-container').slideToggle('slow');
+		});
+	} else {
+		$('.exercise-container').slideToggle('slow',function() {
+			$('.selectnewexercise').slideToggle('slow');
+		});
+	}
+}
+
+//**********************************
+//**When exercise dropped into chart***
+//**********************************
+var addExercise = function(handle) {
+	var header = $(handle).children('h5').html();
+	var title = $("<div class='exercise-title'>"+header+"</div>");
+	var row = $("<div class='chart-row'></div>");
+	var deletediv = $("<div class='delete'>x</div>");
+	row.append(title);
+	for (var a=0; a < 5; a++){
+		var columns = $("<div class='exercise1 setsrep'>3 x 15</div>");
+		row.append(columns);
+	}
+	row.append(deletediv);
+	$('.chart-body').prepend(row);
+	chartfunctionality();
+}
+
+
+//**********************************
+//***Chart Functionality************
+//**********************************
+var currentsetsreps;
+var chartfunctionality = function() {
+	//Implement draggable
+	$(".exercisedrag").draggable({
+		revert: "invalid",
+		drag: function() {
+			$('.drophere').css('display','block');
+		},
+		stop: function() {
+			$('.drophere').css('display','none');
+		},
+	});
+	
+	//Implement droppable
+	 $(".droppable").droppable({
+		drop: function( event, ui ) {
+			addExercise(ui.draggable);
+			var name = $(ui.draggable).children('h5').html();
+			for (var a=0;a < exercises.length; a++) {
+				if (exercises[a].name === name) {
+					exercises[a].included = true;
+					createExercise(exercises[a].name,'3','3','3','3','3','15','15','15','15','15',exercises[a]);
+				}
+			}
+			$(ui.draggable).remove();
+			$('.drophere').css('display','none');
+		}
+	});
+	
+	//Delete functionality
+	$('.delete').unbind('click');
+	$('.delete').click(function() {
+		$(this).parent().slideToggle();
+		var name = $($(this).parent().children()[0]).html();
+		for (var a=0;a < exercises.length; a++) {
+			if (exercises[a].name === name) {
+				exercises[a].included = false;
+				deleteExercise(parseInt(exercises[a].id));
+			}
+		}
+		drawExercises(type);
+		
+	});
+	$('.setsrep').unbind('click');
+	$('.setsrep').click(function() {
+		if ($(this).children().length > 0) {
+		
+		} else {
+			currentsetsreps = $(this);
+			var stringval = $(this).html();
+			stringval = stringval.split(' x ');
+			$(this).addClass('editing');
+			$(this).empty();
+			var input1 = $('<input type="text" class="sets change">');
+			var input2 = $('<input type="text" class="reps change" >');
+			input1.val(stringval[0]);
+			input2.val(stringval[1]);
+			$(this).append(input1);
+			$(this).append(' x ');
+			$(this).append(input2);
+		}
+		$(this).parent().mouseleave(function() {
+			var handler = $(this).children('.editing');
+			var children = $(handler).children();
+			console.log(children);
+			$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
+			$(handler).removeClass('editing');
+			var rowchart = $(this);
+			$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
+			$(handler).removeClass('editing');
+			exerciseTitle = $(handler.parent().children()[0]).html();
+			for (var a=0; a< exercises.length; a++) {
+				if (exercises[a].name === exerciseTitle) {
+					var exerciseh = rowchart.children('.exercise1');
+					var tspl = [0,0,0,0,0,0,0,0,0,0]
+					for ( var b=0; b < exerciseh.length; b++)  {
+							var tmp = $(exerciseh[b]).html().split(' x ');
+							tspl[b] = tmp[0];
+							tspl[5+b] = tmp[1];
+					}	
+					updateExercise(exercises[a].id,exercises[a].name,tspl[0],tspl[1],tspl[2],tspl[3],tspl[4],tspl[5],tspl[6],tspl[7],tspl[8],tspl[9]);
+				}	
+			}
+		});
+	}); 
+	
+}
+$(document).ready(function() {
+$('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+});
+});
+
+$(document).keypress(function(event) {
+    if (event.which == 13 || event.keyCode == 13) {
+		handle = currentsetsreps;
+		var handler = $(handle).parent().children('.editing');
+		var children = $(handler).children();
+		var rowchart = handle.parent();
+		if ($(children[0]).val().length === 0) { $(children[0]).val('3')};
+		if ($(children[1]).val().length === 0) { $(children[1]).val('3')};
+		$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
+		$(handler).removeClass('editing');
+		exerciseTitle = $(handler.parent().children()[0]).html();
+		for (var a=0; a< exercises.length; a++) {
+			if (exercises[a].name === exerciseTitle) {
+				var exerciseh = rowchart.children('.exercise1');
+				var tspl = [0,0,0,0,0,0,0,0,0,0]
+				for ( var b=0; b < exerciseh.length; b++)  {
+						var tmp = $(exerciseh[b]).html().split(' x ');
+						tspl[b] = tmp[0];
+						tspl[5+b] = tmp[1];
+				}	
+				updateExercise(exercises[a].id,exercises[a].name,tspl[0],tspl[1],tspl[2],tspl[3],tspl[4],tspl[5],tspl[6],tspl[7],tspl[8],tspl[9]);
+			}	
+		}
+    };
+});
+
+
+//**********************************
+//***********Notes******************
+//**********************************
+var color='green'
+
+$(document).ready(function() {
+	
+	$('.notecolor button').click(function() {
+		var handle = $(this);
+		$('.notecolor button').removeClass('disabled');
+		$('.notecolor button').addClass('disabled');
+		handle.removeClass('disabled');
+		color = handle.html();
+	});
+	
+	$('.addnotebutton').click(function() {
+		var today = new Date();
+		today = String(today)
+		today = today.split(" ");
+		today = today[0]+" "+today[1]+" "+today[2]
+		addNote(color,$('#notetextarea').val(),today);
+		createNote(color,$('#notetextarea').val());
+	});
+});
+
+var addNote = function(color,message,date) {
+	var alerttext = color;
+	if (color === 'Green') { alerttext = 'success'};
+	if (color === 'Yellow') { alerttext = 'warning'};
+	if (color === 'Red') { alerttext = 'danger'};
+	if (color === 'Blue') { alerttext = 'info'};
+	var noteh = $("<div class='alert alert-"+alerttext+"'></div>");
+	noteh.append('<h5>'+date+'</h5>');
+	noteh.append('<p>'+message+'</p>');
+	$('.notes').prepend(noteh);
+}
+
+var addInjury = function(date,injury,status) {
+	var injury1 = $("<tr>");
+	injury1.append($("<td class='tabledate'>"+date+"</td>"));
+	injury1.append($("<td class='tableinjury'>"+injury+"</td>"));
+	injury1.append($("<td class='tablestatus'>"+status+"</td>"));
+	$('.injurytable').prepend(injury1);
+
+}
+
+//**********************************
+//***Chart Functionality************
+//**********************************
+$(document).ready(function() {
+	$('#healthybutton').click(function() {
+		$('.latestinjury').html('Healthy');
+		$('.latestinjury').css('color','green');
+		today = new Date();
+		createInjury('Healthy',parseInt(today.getDay()),parseInt(today.getMonth()),parseInt(today.getFullYear()),'This athlete has been marked as healthy');
+	});
+
+});
+//**********************************
+//***Front to Back End Calls *******
+//**********************************
+//Changing an exercise
+var deleteExercise = function(exerciseid) {
+	$.post("/exercises/delete.json", {'exercise': {'id':exerciseid}} ).done(function(data) {
+		console.log(data);
+	});
+};
+var updateExercise = function(id,name,w1s,w2s,w3s,w4s,w5s,w1r,w2r,w3r,w4r,w5r) {
+	$.post("/exercises/update.json", {'exercise': {'id':id,'name':name,'week1sets':w1s,'week2sets':w2s,'week3sets':w3s,
+	'week4sets':w4s,'week5sets':w5s,'week1reps':w1r,'week2reps':w2r,'week3reps':w3r,'week4reps':w4r,'week5reps':w5r}})
+	.done(function(data) {
+		console.log(data);
+	});
+};
+
+var createExercise = function(name,w1s,w2s,w3s,w4s,w5s,w1r,w2r,w3r,w4r,w5r,handle) {
+	$.post("/exercises/create.json", {'exercise': {'name':name,'week1sets':w1s,'week2sets':w2s,'week3sets':w3s,
+	'week4sets':w4s,'week5sets':w5s,'week1reps':w1r,'week2reps':w2r,'week3reps':w3r,'week4reps':w4r,'week5reps':w5r}})
+	.done(function(data) {
+		handle.id = data.id;
+	});
+};
+var createNote = function(color,message,date) {
+	$.post("/notes/create.json", {'note':{'color':color,'text':message}})
+	.done(function(data) {
+	});
+};
+var createInjury = function(name,day,month,year,overview) {
+	$.post("/injuries/create", {'injury':{'name':name,'day':day,'month':month,'year':year,'overview':overview}})
+	.done(function(data) {
+	});
+};
+
+
+
+
+</script>
+
+	<div class="header">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="navbar-contain">
+					<a class="brand" href="../../trainers/home"><img class='logo' src="/images/logo.png"/></a>
+					<ul class="nav pull-right">
+						 <li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							Athletes
+							<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href='chart.html'>Kobe Bryant</a></li>
+								<li><a href='newplayer.html'>Add New Athlete</a></li>
+							</ul>
+						</li>
+						<li><a href="../../">Sign Out</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="main-container">
+		<div class="profile well">
+			<%= image_tag @athlete.pic.url %>
+			<div class="profileinfo">
+				<h2><%= @athlete.firstname %> <%= @athlete.lastname %> </h2>
+				<h3> <%= @athlete.sport %> </h3>
+				<h4 class='heightweight'></h4>
+				<h4><%= @athlete.hometown %></h4>
+				<h5> Latest Injury:</h5>
+				<h6 class='latestinjury'><%= @current_injury.name %></h6>
+			</div>
+			<div class="profilebox well">
+				<h3> Injury Overview</h3>
+				<p><%= @current_injury.overview %></p>
+			</div>
+			<div class='injurybar'>
+				<button id="healthybutton" class="btn btn-success">Mark as Healthy</button>
+				<button id="injurybutton" class="btn btn-danger">Add New Injury</button>
+			</div>
+			<div class='clear'></div>
+		</div>
+		
+		<ul class="nav nav-tabs" id="myTab">
+			<li class="active"><a href="#chart">Current Program</a></li>
+			<li><a href="#history">Injury History</a></li>
+			<li><a href="#progress">Athlete Notes</a></li>
+		</ul>
+ 
+		<div id="tab-content" class="tab-content">
+			<div class="tab-pane active" id="chart">
+				<div class="bottom-container">
+					<div class="exercise-select well span3">
+						<div class="choose-exercise gradientbg">
+			<h6> Select Different Body Area<i class="icon-search icon-white"></i></h6>
+		</div>
+						<div class="selectnewexercise">
+			<div class="newexercise">
+				<h5>Knee</h5>
+			</div>
+			<div class="newexercise">
+				<h5>Quad</h5>
+			</div>
+			<div class="newexercise">
+				<h5>Ankle</h5>
+			</div>
+			<div class="newexercise">
+				<h5>Shoulder</h5>
+			</div>
+			<div class="newexercise">
+				<h5>Calf</h5>
+			</div>
+		</div>
+						<div class="exercise-container"></div>
+					</div>
+					<div class="chart well droppable">
+		<div class="chart-header gradientbg">
+			<div class='title'> Exercise </div>
+			<div class='day'>
+				<p>Week 1</p>
+				<p>May 5th</p>
+			</div>
+			<div class='day'>
+				<p>Week 2</p>
+				<p>May 12th</p>
+			</div>
+			<div class='day'>
+				<p>Week 3</p>
+				<p>May 19th</p>
+			</div>
+			<div class='day'>
+				<p>Week 4</p>
+				<p>May 26th</p>
+			</div>
+			<div class='day'>
+				<p>Week 5</p>
+				<p>June 2nd</p>
+			</div>
+		</div>
+		<div class="drophere">
+			<h1> Select an injury area from the sidebar</h1>
+		</div>
+		<div class='chart-body'>
+		
+		</div>
+	</div>
+					<div class='clear'></div>
+				</div>
+			</div>
+			<div class="tab-pane" id="history">
+				<table class="table table-striped historytable">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Injury</th>
+							<th>Overview</th>
+						</tr>
+					</thead>
+					<tbody class='injurytable'>
+						
+					</tbody>
+				</table>
+			
+			
+			
+			</div>
+			<div class="tab-pane" id="progress">
+				<div class="addnote">
+					<textarea id="notetextarea" placeholder="Add a note or comment about the athlete"></textarea>
+					<button value='submit' name='submit' class='btn btn-custom-blue addnotebutton'>Add Note</button>
+					<div class="btn-group notecolor">
+						<button class="btn btn-danger">Red</button>
+						<button class="btn btn-warning disabled">Yellow</button>
+						<button class="btn btn-success disabled">Green</button>
+						<button class="btn btn-info disabled">Blue</button>
+					</div>
+					<div class='clear'></div>				
+				</div>
+				
+				<div class='notes'>
+					
+				</dib>
+			</div>
+		</div>
+		
+		
+		
+		
+	</div>
+
+	<div class="footer">
+		<p>Easy Trainer created by Mitchell Kates, Derek Vaughn, James Arana, and Asa Oines for UI Design and Implementation Spring 2013</p>
+	</div>

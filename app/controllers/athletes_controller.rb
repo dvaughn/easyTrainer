@@ -42,25 +42,26 @@ class AthletesController < ApplicationController
   end
 
   def home
-    if session[:trainer_id]
-      uid = session[:trainer_id]
+		uid = session[:trainer_id]
 
-      if params[:id]
-        aid = params[:id]
-      else
-        aid = session[:athlete_id]
-      end
-      session[:athlete_id] = aid
-      @trainer = Trainer.find(uid)
-      @athlete = @trainer.athletes.find(aid)
-    else
-      if session[:athlete_id]
-        aid = session[:athlete_id]
-      else
-        aid = params[:id]
-      end
-      @athlete = Athlete.find(aid)
-    end
+		if params[:id]
+			aid = params[:id]
+		else
+			aid = session[:athlete_id]
+		end
+		session[:athlete_id] = aid
+		@trainer = Trainer.find(uid)
+		@athlete = @trainer.athletes.find(aid)
+
+    @bodyparts = Bodypart.all
+    @notes = @athlete.notes
+    @injuries = @athlete.injuries
+    @current_injury = @injuries.last
+  end
+
+  def athlete_home
+    aid = session[:athlete_id]
+    @athlete = Athlete.find(aid)
     @bodyparts = Bodypart.all
     @notes = @athlete.notes
     @injuries = @athlete.injuries

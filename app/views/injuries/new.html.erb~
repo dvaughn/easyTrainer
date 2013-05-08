@@ -1,0 +1,98 @@
+
+<style>
+.newplayer {
+	width: 600px;
+	margin: 30px auto;
+	background: white;
+}
+.return {
+	float: right;
+	margin-top: 26px;
+}
+.newplayer h2 {
+	border-bottom:1px solid #ccc;
+	margin-bottom: 30px;
+}
+</style>
+
+<script>
+$(document).ready(function() {
+});
+
+
+</script>
+<div class="header">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="navbar-contain">
+				<a class="brand" href="index.html"><img class='logo' src="../img/prod/logo.png"/></a>
+				<ul class="nav pull-right">
+					 <li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Athletes
+						<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href='chart.html'>Kobe Bryant</a></li>
+							<li><a href='newplayer.html'>Add New Athlete</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Sign Out</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="main-container">
+	<div class='newplayer well'>
+		<a href='index.html' class='return'> Return Home</a>
+		<h2> Add a New Injury </h2>
+		<div class="clear"></div>
+
+		<%= form_for @injury, :class => "form-horizontal", :url => { :action=> "create" }, :html => { :method => "POST" }  do |f| %>
+
+		
+			<div class="control-group">
+				<label class="control-label" for="inputName">Injury Name</label>
+				<div class="controls">
+					<%= f.text_field :name, :placeholder => "Torn Achilles Tendon" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputMonth">Month of Injury</label>
+				<div class="controls">
+					<%= f.text_field :month, :placeholder => "Numerical (1-12)" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputDay">Day of Injury</label>
+				<div class="controls">
+					<%= f.text_field :day, :placeholder => "Numerical (1-31)" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputYear">Year of Injury</label>
+				<div class="controls">
+					<%= f.text_field :year, :placeholder => "2013" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputOverview">Overview</label>
+				<div class="controls">
+					<%= f.text_field :overview, :placeholder => "Inches" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<%= f.submit "Add Injury", :class => "btn btn-custom-blue" %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="footer">
+	<p>Easy Trainer created by Mitchell Kates, Derek Vaughn, James Arana, and Asa Oines for UI Design and Implementation Spring 2013</p>
+</div>
