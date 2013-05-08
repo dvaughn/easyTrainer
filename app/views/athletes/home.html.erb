@@ -8,7 +8,10 @@ $(document).ready(function() {
 	var feet = Math.floor(height/12);
 	$('.heightweight').html(feet+"'"+inches+'" '+' <%= @athlete.weight %> lbs');
 	
-	
+	<% @trainer.athletes.each do |athlete| %>
+		var athletename = String("<%= athlete.firstname %>"+" "+"<%= athlete.lastname %>");
+		$('.dropdown-menu').prepend("<li><a href='?="+<%= athlete.id %>+"'>"+athletename+"</a></li>");
+	<% end %>
 	<% @notes.each do |note| %>
 		var date = "<%= note.created_at.localtime %>";
 		var today = new Date(date.split(' ')[0]);
@@ -375,6 +378,9 @@ $(document).ready(function() {
 		today = new Date();
 		createInjury('Healthy',parseInt(today.getDay()),parseInt(today.getMonth()),parseInt(today.getFullYear()),'This athlete has been marked as healthy');
 	});
+	$('#injurybutton').click(function() {
+		window.l
+	});
 
 });
 //**********************************
@@ -429,8 +435,7 @@ var createInjury = function(name,day,month,year,overview) {
 							<b class="caret"></b>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href='chart.html'>Kobe Bryant</a></li>
-								<li><a href='newplayer.html'>Add New Athlete</a></li>
+								<li><a href='../new'>Add New Athlete</a></li>
 							</ul>
 						</li>
 						<li><a href="../../">Sign Out</a></li>
@@ -442,7 +447,7 @@ var createInjury = function(name,day,month,year,overview) {
 	
 	<div class="main-container">
 		<div class="profile well">
-			<%= image_tag @athlete.pic.url %>
+			<div class='img-container'><%= image_tag @athlete.pic.url %></div>
 			<div class="profileinfo">
 				<h2><%= @athlete.firstname %> <%= @athlete.lastname %> </h2>
 				<h3> <%= @athlete.sport %> </h3>
@@ -457,7 +462,7 @@ var createInjury = function(name,day,month,year,overview) {
 			</div>
 			<div class='injurybar'>
 				<button id="healthybutton" class="btn btn-success">Mark as Healthy</button>
-				<button id="injurybutton" class="btn btn-danger">Add New Injury</button>
+				<a id="injurybutton" href="/injury/new" class="btn btn-danger">Add New Injury</a>
 			</div>
 			<div class='clear'></div>
 		</div>
