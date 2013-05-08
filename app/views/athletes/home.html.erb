@@ -379,9 +379,9 @@ $(document).ready(function() {
 	$('#healthybutton').click(function() {
 		$('.latestinjury').html('Healthy');
 		$('.latestinjury').css('color','green');
-		today = new Date();
+		ty = new Date();
 		if (!($('.latestinjury').html() === 'Healthy')) {
-			createInjury('Healthy',parseInt(today.getDay()),parseInt(today.getMonth()),parseInt(today.getFullYear()),'This athlete has been marked as healthy');
+			createInjury('Healthy',parseInt(ty.getDate()),parseInt(ty.getMonth()+1),parseInt(ty.getFullYear()),'This athlete has been marked as healthy');
 		};
 	});
 

@@ -21,7 +21,7 @@ $(document).ready(function() {
 		var newtd = $("<td>");
 		var content = $("<a href='"+athletes[a][4]+"'>");
 		var divcontain = $('<div class="athlete-card floatleft" id="athlete-card1">');
-		divcontain.append($("<img src='"+athlete[a][5]+"'/>"));
+		divcontain.append($("<img style='float:left;height:100px;' src='"+athletes[a][5]+"'/>"));
 		divcontain.append($('<h3 class="athlete-card-name">'+athletes[a][0]+' '+athletes[a][1]+'</h3>'));
 		divcontain.append($('<h4 class="athlete-card-sport">'+athletes[a][2]+'<h4>'));
 		divcontain.append($('<h5 class="athlete-card-injury"><span>'+athletes[a][3]+'</span></h5>'));

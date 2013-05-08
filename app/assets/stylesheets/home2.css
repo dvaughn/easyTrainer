@@ -35,9 +35,9 @@
 	border:1px solid #bbb;
 	box-shadow:0 0 3px #ccc;
 	border-radius: 5px;
-	height: 140px;
 	position: relative;
 	width: 300px;
+	height: 100px;
 	margin: 25px;
 }
 .athlete-card:hover {
@@ -46,14 +46,20 @@
 }
 .athlete-card h3 {
 	color: #333;
+	line-height: 20px;
+	font-size: 16px;
 }
 .athlete-card h4 {
 	color: #555;
+	font-size:14px;
 	font-weight: 100;
 }
 .athlete-card h5 {
+	font-size:12px;
 	text-align: center;
 	font-size: 16px;
+	margin: 0;
+	margin-bottom:5px;
 }
 
 .athlete-card-picture {
