@@ -442,7 +442,7 @@ var createInjury = function(name,day,month,year,overview) {
 	
 	<div class="main-container">
 		<div class="profile well">
-			<%= image_tag @athlete.pic.url %>
+			<%= image_tag @athlete.pic.url(:medium) %>
 			<div class="profileinfo">
 				<h2><%= @athlete.firstname %> <%= @athlete.lastname %> </h2>
 				<h3> <%= @athlete.sport %> </h3>
