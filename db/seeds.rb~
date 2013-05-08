@@ -137,29 +137,29 @@ kobe_ex = kobe_workout.exercises.create(:name => 'Lunges', :'week1sets' => 1, :'
 			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Knee')
 
 john_workout = john.create_workout(:name => "test")
-john_ex = john_workout.exercises.create(:name => 'Squats', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+john_ex = john_workout.exercises.create(:name => 'Dorsiflexion', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
  			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
-			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Quad') 
+			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Ankle') 
 
 arod_workout = arod.create_workout(:name => "test")
-arod_ex = arod_workout.exercises.create(:name => 'Swings', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+arod_ex = arod_workout.exercises.create(:name => 'Pendulum', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
  			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
 			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Core') 
 
 dale_workout = dale.create_workout(:name => "test")
-dale_ex = dale_workout.exercises.create(:name => 'Left Turns', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+dale_ex = dale_workout.exercises.create(:name => 'Lunges', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
  			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
-			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Core') 
+			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Knee') 
 
 ron_workout = ron.create_workout(:name => "test")
-ron_ex = ron_workout.exercises.create(:name => 'Jazz Flute', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+ron_ex = ron_workout.exercises.create(:name => 'Dorsiflexion', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
  			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
-			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Arm') 
+			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Ankle') 
 
 brock_workout = brock.create_workout(:name => "test")
-brock_ex = brock_workout.exercises.create(:name => 'Domination', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+brock_ex = brock_workout.exercises.create(:name => 'Pendulum', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
  			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
-			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Neck') 
+			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Core') 
 
 
 ########## KOBE's INJURY REPORT #############
