@@ -7,10 +7,14 @@ $(document).ready(function() {
 	var inches = height % 12;
 	var feet = Math.floor(height/12);
 	$('.heightweight').html(feet+"'"+inches+'" '+' <%= @athlete.weight %> lbs');
+
+	if ($('.latestinjury').html() === 'Healthy') {
+		$('.latestinjury').css('color','green');
+	}
 	
 	<% @trainer.athletes.each do |athlete| %>
 		var athletename = String("<%= athlete.firstname %>"+" "+"<%= athlete.lastname %>");
-		$('.dropdown-menu').prepend("<li><a href='?="+<%= athlete.id %>+"'>"+athletename+"</a></li>");
+		$('.dropdown-menu').prepend("<li><a href='?id="+<%= athlete.id %>+"'>"+athletename+"</a></li>");
 	<% end %>
 	<% @notes.each do |note| %>
 		var date = "<%= note.created_at.localtime %>";
@@ -169,12 +173,12 @@ $(document).ready(function() {
 
 var switchviews = function() {
 	if ($('.selectnewexercise').is(':visible')) {
-		$('.selectnewexercise').slideToggle('slow',function() {
-			$('.exercise-container').slideToggle('slow');
+		$('.selectnewexercise').fadeOut('fast',function() {
+			$('.exercise-container').fadeIn('fast');
 		});
 	} else {
-		$('.exercise-container').slideToggle('slow',function() {
-			$('.selectnewexercise').slideToggle('slow');
+		$('.exercise-container').fadeOut('fast',function() {
+			$('.selectnewexercise').fadeIn('fast');
 		});
 	}
 }
@@ -376,10 +380,9 @@ $(document).ready(function() {
 		$('.latestinjury').html('Healthy');
 		$('.latestinjury').css('color','green');
 		today = new Date();
-		createInjury('Healthy',parseInt(today.getDay()),parseInt(today.getMonth()),parseInt(today.getFullYear()),'This athlete has been marked as healthy');
-	});
-	$('#injurybutton').click(function() {
-		window.l
+		if (!($('.latestinjury').html() === 'Healthy')) {
+			createInjury('Healthy',parseInt(today.getDay()),parseInt(today.getMonth()),parseInt(today.getFullYear()),'This athlete has been marked as healthy');
+		};
 	});
 
 });
@@ -427,7 +430,7 @@ var createInjury = function(name,day,month,year,overview) {
 		<div class="navbar">
 			<div class="navbar-inner">
 				<div class="navbar-contain">
-					<a class="brand" href="../../trainers/home"><img class='logo' src="/images/logo.png"/></a>
+					<a class="brand" href="/trainers/home"><img class='logo' src="/images/logo.png"/></a>
 					<ul class="nav pull-right">
 						 <li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -438,7 +441,7 @@ var createInjury = function(name,day,month,year,overview) {
 								<li><a href='../new'>Add New Athlete</a></li>
 							</ul>
 						</li>
-						<li><a href="../../">Sign Out</a></li>
+						<li><a href="/trainers/logout">Sign Out</a></li>
 					</ul>
 				</div>
 			</div>
@@ -477,7 +480,7 @@ var createInjury = function(name,day,month,year,overview) {
 			<div class="tab-pane active" id="chart">
 				<div class="bottom-container">
 					<div class="exercise-select well span3">
-						<div class="choose-exercise gradientbg">
+						<div class="choose-exercise custombg">
 			<h6> Select Different Body Area<i class="icon-search icon-white"></i></h6>
 		</div>
 						<div class="selectnewexercise">

@@ -53,12 +53,9 @@
 }
 .athlete-card h5 {
 	text-align: center;
-	color: green;
 	font-size: 16px;
 }
-.athlete-card h5 span {
-	color: red;
-}
+
 .athlete-card-picture {
 	height: 140px;
 	width: 100px;
@@ -79,16 +76,8 @@
 	font-family: 'Noto Serif', serif;
 	text-align: center;
 }
-
-.status-injured {
-	font-family: 'Noto Serif', serif;
-	text-align: center;
-	color: red;
-}
-
-.status-healthy {
-	font-family: 'Noto Serif', serif;
-	text-align: center;
-	color: green;
+.athlete-card-injury {
+	color: #444;
+	text-transform: uppercase;
 }
 

@@ -16,7 +16,6 @@ $(document).ready(function() {
 	var table = $('.athletetable');
 	var trhandle;
 	for (var a=0; a < athletes.length; a++) {
-		console.log(a);
 		var newtr = $("<tr>");
 		var newtd = $("<td>");
 		var content = $("<a href='"+athletes[a][4]+"'>");
@@ -27,7 +26,6 @@ $(document).ready(function() {
 		divcontain.append($('<h5 class="athlete-card-injury"><span>'+athletes[a][3]+'</span></h5>'));
 		content.append(divcontain);
 		newtd.append(content);
-		console.log(newtd);
 		newtr.append(newtd);
 		table.append(newtr);
 		if (a%2 == 0) {
@@ -38,24 +36,37 @@ $(document).ready(function() {
 		} else {
 			trhandle.append(newtd);
 		}
-	
-	
+		
+		$('#athletes').append("<option class='"+athletes[a][4]+"' value='"+athletes[a][0]+" "+athletes[a][1]+"'></option>");
 	}
+
+	
+	$('.search').click(function() {
+		element = $('.search-box').val()
+		for (var a=0; a < athletes.length ; a++ ) {
+			var ath = String(athletes[a][0]+" "+athletes[a][1]);
+			if (element === ath) {
+				window.location = athletes[a][4];
+			}
+		}
+	
+	});
 });
+
+
+
 
 </script>
 <div class="main-container">
 	<img class="search-logo" src="/images/logo.png" align="center"/>
 	<div class="search-box-wrap">
-		<input class="search-box" type="search" placeholder="Search for an Athlete, or browse below" list="athletes" autocomplete="off" onsearch="javascript:location.href='index.html';" />
+		<input class="search-box" type="search" placeholder="Search for an Athlete, or browse below" list="athletes" autocomplete="off" onsearch="console.log('yay');" />
 		<datalist id="athletes">
-			<option value="Kobe Bryant">Kobe</option>
-			<option value="John Wenzel">John</option>
-			<option value="Michael Jordan">Michael</option>
-			<option value="Carmelo Anthony">Carmelo</option>
 		</datalist>
 		<div class='actionbuttons'>
-			<a href='newplayer.html' class='btn btn-custom-blue'>or Create a New Athlete</a>
+			<a class='btn btn-success search'>Search</a>
+			<a href='/athletes/new' class='btn btn-custom-blue'>or Create a New Athlete</a>
+			<a href='/trainers/logout' class='btn'>Sign Out</a>
 		</div>
 	</div>
 	
