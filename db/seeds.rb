@@ -128,10 +128,38 @@ brock.pic = brockpic
 brockpic.close
 brock.save!
 
-workout = kobe.create_workout(:name => "test")
-test_ex1 = workout.exercises.create(:name => 'Lunges', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+
+######### SEEDED ATHLETE WORKOUTS ############
+
+kobe_workout = kobe.create_workout(:name => "test")
+kobe_ex = kobe_workout.exercises.create(:name => 'Lunges', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
  			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
-			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Knee') 
+			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Knee')
+
+john_workout = john.create_workout(:name => "test")
+john_ex = john_workout.exercises.create(:name => 'Squats', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+ 			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
+			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Quad') 
+
+arod_workout = arod.create_workout(:name => "test")
+arod_ex = arod_workout.exercises.create(:name => 'Swings', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+ 			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
+			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Core') 
+
+dale_workout = dale.create_workout(:name => "test")
+dale_ex = dale_workout.exercises.create(:name => 'Left Turns', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+ 			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
+			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Core') 
+
+ron_workout = ron.create_workout(:name => "test")
+ron_ex = ron_workout.exercises.create(:name => 'Jazz Flute', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+ 			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
+			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Arm') 
+
+brock_workout = brock.create_workout(:name => "test")
+brock_ex = brock_workout.exercises.create(:name => 'Domination', :'week1sets' => 1, :'week2sets' => 2, :'week3sets' => 3, :'week4sets' => 4,
+ 			:'week5sets' => 5, :'week1reps' => 6, :'week2reps' => 7, :'week3reps' => 8, :'week4reps' => 9, 
+			:'week5reps' => 10, :'difficulty' =>'easy',:'bodypart' => 'Neck') 
 
 
 ########## KOBE's INJURY REPORT #############
@@ -153,6 +181,14 @@ kobe.injuries.create(:name => "Healthy", :day => 23, :month => 3, :year => 2013,
 
 achilles_overview = "During the Golden State warriors game on 4/12, Kobe sustained a 'pop' sound after cutting to the basket. Bryant asked Barnes if he had kicked him in the leg. When Barnes said he hadn't, Bryant said he knew that a major injury had occurred. An MRI revealed a torns achilles tendon"
 kobe.injuries.create(:name => "Torn Achilles Tendon", :day => 12, :month => 4, :year => 2013, :date => DateTime.new(2013, 4, 12), :overview => achilles_overview)
+
+
+########### SEEDED ATHLETE INJURIES ##############
+john.injuries.create(:name => "Healthy", :day => 24, :month => 1, :year => 2013, :date => DateTime.new(2013, 1, 24), :overview => healthy_overview)
+arod.injuries.create(:name => "Healthy", :day => 24, :month => 1, :year => 2013, :date => DateTime.new(2013, 1, 24), :overview => healthy_overview)
+dale.injuries.create(:name => "Healthy", :day => 24, :month => 1, :year => 2013, :date => DateTime.new(2013, 1, 24), :overview => healthy_overview)
+ron.injuries.create(:name => "Healthy", :day => 24, :month => 1, :year => 2013, :date => DateTime.new(2013, 1, 24), :overview => healthy_overview)
+brock.injuries.create(:name => "Healthy", :day => 24, :month => 1, :year => 2013, :date => DateTime.new(2013, 1, 24), :overview => healthy_overview)
 
 
 ############# KOBE's NOTES ################

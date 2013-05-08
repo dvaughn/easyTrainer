@@ -45,12 +45,14 @@ class TrainersController < ApplicationController
       else
         flash[:login_error] = "The password you specified was incorrect"
         @trainer = Trainer.new
+				@athlete = Athlete.new
         render :index
       end
 
     else
       flash[:login_error] = "The username you specified is already in use"
       @trainer = Trainer.new
+      @athlete = Athlete.new
       render :index
     end
   end
@@ -60,6 +62,7 @@ class TrainersController < ApplicationController
     session[:athlete_id] = nil
     session[:workout_id] = nil
     @trainer = Trainer.new
+		@athlete = Athlete.new
     render :index
   end
 
