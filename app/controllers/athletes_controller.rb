@@ -1,6 +1,7 @@
 class AthletesController < ApplicationController
   def new
     @athlete = Athlete.new
+    @atheletes = Athlete.new
   end
 
   def login
@@ -57,6 +58,7 @@ class AthletesController < ApplicationController
     @notes = @athlete.notes
     @injuries = @athlete.injuries
     @current_injury = @injuries.last
+    @workouts = Workout.all 
   end
 
   def athlete_home

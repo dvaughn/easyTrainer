@@ -9,6 +9,7 @@ class CreateAthletes < ActiveRecord::Migration
       t.integer 'weight'
       t.string 'hometown'
       t.string 'status'
+      t.integer 'temp_id'
       t.references :trainer
     end
   end

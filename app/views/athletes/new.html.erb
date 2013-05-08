@@ -1,4 +1,4 @@
-
+	
 <style>
 .newplayer {
 	width: 600px;
@@ -93,6 +93,12 @@ $(document).ready(function() {
 				<label class="control-label" for="inputHometown">Hometown</label>
 				<div class="controls">
 					<%= f.text_field :hometown, :placeholder => "Anytown, MA" %>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputTemplateWorkout">Picture</label>
+				<div class="controls">
+					<%= options_from_collection_for_select(@athletes, :id, :name) %>
 				</div>
 			</div>
 			<div class="control-group">
