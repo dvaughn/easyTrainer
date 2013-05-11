@@ -12,4 +12,5 @@ class TexercisesController < ApplicationController
     id = params[:texercise][:id]
     @texercise = Texercise.find(id)
     @texercise.destroy
+  end
 end
