@@ -7,7 +7,7 @@ $(document).ready(function() {
 		var fn = "<%= athlete.firstname %>";
 		var ln = "<%= athlete.lastname %>";
 		var sport = "<%= athlete.sport %>";
-		var status = "<%= athlete.status %>";
+		var status = "<%= athlete.injuries.last.name %>";
 		var href = "/athletes/home/?id=<%= athlete.id %>";
 		var src = "<%= athlete.pic.url(:thumb) %>";
 		newathlete = [fn,ln,sport,status,href,src];

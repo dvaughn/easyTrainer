@@ -10,7 +10,7 @@ class AthletesController < ApplicationController
     if @athlete
       session[:athlete_id] = @athlete.id
       session[:trainer_id] = nil
-      redirect_to :controller => :athletes, :action => :home
+      redirect_to :controller => :athletes, :action => :athlete_home
     else
       redirect_to :controller => :trainers, :action => :index
     end

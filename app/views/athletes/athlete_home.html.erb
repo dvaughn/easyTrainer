@@ -129,7 +129,7 @@ var drawChart = function() {
 			var header = b.name;
 			var title = $("<div class='exercise-title'>"+header+"</div>");
 			var row = $("<div class='chart-row'></div>");
-			var deletediv = $("<div class='delete'>x</div>");
+			var deletediv = $("<div class='delete'></div>");
 			row.append(title);
 			console.log(b);
 			for (var c=0; c < 5; c++){
@@ -183,7 +183,7 @@ var addExercise = function(handle) {
 	var header = $(handle).children('h5').html();
 	var title = $("<div class='exercise-title'>"+header+"</div>");
 	var row = $("<div class='chart-row'></div>");
-	var deletediv = $("<div class='delete'>x</div>");
+	var deletediv = $("<div class='delete'></div>");
 	row.append(title);
 	for (var a=0; a < 5; a++){
 		var columns = $("<div class='exercise1 setsrep'>3 x 15</div>");
@@ -227,62 +227,8 @@ var chartfunctionality = function() {
 		}
 	});
 	
-	//Delete functionality
-	$('.delete').unbind('click');
-	$('.delete').click(function() {
-		$(this).parent().slideToggle();
-		var name = $($(this).parent().children()[0]).html();
-		for (var a=0;a < exercises.length; a++) {
-			if (exercises[a].name === name) {
-				exercises[a].included = false;
-				deleteExercise(parseInt(exercises[a].id));
-			}
-		}
-		drawExercises(type);
-		
-	});
-	$('.setsrep').unbind('click');
-	$('.setsrep').click(function() {
-		if ($(this).children().length > 0) {
-		
-		} else {
-			currentsetsreps = $(this);
-			var stringval = $(this).html();
-			stringval = stringval.split(' x ');
-			$(this).addClass('editing');
-			$(this).empty();
-			var input1 = $('<input type="text" class="sets change">');
-			var input2 = $('<input type="text" class="reps change" >');
-			input1.val(stringval[0]);
-			input2.val(stringval[1]);
-			$(this).append(input1);
-			$(this).append(' x ');
-			$(this).append(input2);
-		}
-		$(this).parent().mouseleave(function() {
-			var handler = $(this).children('.editing');
-			var children = $(handler).children();
-			console.log(children);
-			$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
-			$(handler).removeClass('editing');
-			var rowchart = $(this);
-			$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
-			$(handler).removeClass('editing');
-			exerciseTitle = $(handler.parent().children()[0]).html();
-			for (var a=0; a< exercises.length; a++) {
-				if (exercises[a].name === exerciseTitle) {
-					var exerciseh = rowchart.children('.exercise1');
-					var tspl = [0,0,0,0,0,0,0,0,0,0]
-					for ( var b=0; b < exerciseh.length; b++)  {
-							var tmp = $(exerciseh[b]).html().split(' x ');
-							tspl[b] = tmp[0];
-							tspl[5+b] = tmp[1];
-					}	
-					updateExercise(exercises[a].id,exercises[a].name,tspl[0],tspl[1],tspl[2],tspl[3],tspl[4],tspl[5],tspl[6],tspl[7],tspl[8],tspl[9]);
-				}	
-			}
-		});
-	}); 
+	
+
 	
 }
 $(document).ready(function() {
@@ -292,31 +238,7 @@ $('#myTab a').click(function (e) {
 });
 });
 
-$(document).keypress(function(event) {
-    if (event.which == 13 || event.keyCode == 13) {
-		handle = currentsetsreps;
-		var handler = $(handle).parent().children('.editing');
-		var children = $(handler).children();
-		var rowchart = handle.parent();
-		if ($(children[0]).val().length === 0) { $(children[0]).val('3')};
-		if ($(children[1]).val().length === 0) { $(children[1]).val('3')};
-		$(handler).html($(children[0]).val()+' x '+$(children[1]).val());
-		$(handler).removeClass('editing');
-		exerciseTitle = $(handler.parent().children()[0]).html();
-		for (var a=0; a< exercises.length; a++) {
-			if (exercises[a].name === exerciseTitle) {
-				var exerciseh = rowchart.children('.exercise1');
-				var tspl = [0,0,0,0,0,0,0,0,0,0]
-				for ( var b=0; b < exerciseh.length; b++)  {
-						var tmp = $(exerciseh[b]).html().split(' x ');
-						tspl[b] = tmp[0];
-						tspl[5+b] = tmp[1];
-				}	
-				updateExercise(exercises[a].id,exercises[a].name,tspl[0],tspl[1],tspl[2],tspl[3],tspl[4],tspl[5],tspl[6],tspl[7],tspl[8],tspl[9]);
-			}	
-		}
-    };
-});
+
 
 
 //**********************************
@@ -339,8 +261,9 @@ $(document).ready(function() {
 		today = String(today)
 		today = today.split(" ");
 		today = today[0]+" "+today[1]+" "+today[2]
-		addNote(color,$('#notetextarea').val(),today);
-		createNote(color,$('#notetextarea').val());
+		addNote(color,"Athlete's Note: "+$('#notetextarea').val(),today);
+		createNote(color,"Athlete's Note: "+$('#notetextarea').val());
+		
 	});
 });
 
@@ -366,48 +289,12 @@ var addInjury = function(date,injury,status) {
 }
 
 //**********************************
-//***Chart Functionality************
-//**********************************
-$(document).ready(function() {
-	$('#healthybutton').click(function() {
-		$('.latestinjury').html('Healthy');
-		$('.latestinjury').css('color','green');
-		today = new Date();
-		createInjury('Healthy',parseInt(today.getDay()),parseInt(today.getMonth()),parseInt(today.getFullYear()),'This athlete has been marked as healthy');
-	});
-
-});
-//**********************************
 //***Front to Back End Calls *******
 //**********************************
 //Changing an exercise
-var deleteExercise = function(exerciseid) {
-	$.post("/exercises/delete.json", {'exercise': {'id':exerciseid}} ).done(function(data) {
-		console.log(data);
-	});
-};
-var updateExercise = function(id,name,w1s,w2s,w3s,w4s,w5s,w1r,w2r,w3r,w4r,w5r) {
-	$.post("/exercises/update.json", {'exercise': {'id':id,'name':name,'week1sets':w1s,'week2sets':w2s,'week3sets':w3s,
-	'week4sets':w4s,'week5sets':w5s,'week1reps':w1r,'week2reps':w2r,'week3reps':w3r,'week4reps':w4r,'week5reps':w5r}})
-	.done(function(data) {
-		console.log(data);
-	});
-};
 
-var createExercise = function(name,w1s,w2s,w3s,w4s,w5s,w1r,w2r,w3r,w4r,w5r,handle) {
-	$.post("/exercises/create.json", {'exercise': {'name':name,'week1sets':w1s,'week2sets':w2s,'week3sets':w3s,
-	'week4sets':w4s,'week5sets':w5s,'week1reps':w1r,'week2reps':w2r,'week3reps':w3r,'week4reps':w4r,'week5reps':w5r}})
-	.done(function(data) {
-		handle.id = data.id;
-	});
-};
 var createNote = function(color,message,date) {
 	$.post("/notes/create.json", {'note':{'color':color,'text':message}})
-	.done(function(data) {
-	});
-};
-var createInjury = function(name,day,month,year,overview) {
-	$.post("/injuries/create", {'injury':{'name':name,'day':day,'month':month,'year':year,'overview':overview}})
 	.done(function(data) {
 	});
 };
@@ -421,18 +308,9 @@ var createInjury = function(name,day,month,year,overview) {
 		<div class="navbar">
 			<div class="navbar-inner">
 				<div class="navbar-contain">
-					<a class="brand" href="../../trainers/home"><img class='logo' src="/images/logo.png"/></a>
+					<a class="brand"><img class='logo' src="/images/logo.png"/></a>
 					<ul class="nav pull-right">
-						 <li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							Athletes
-							<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href='chart.html'>Kobe Bryant</a></li>
-								<li><a href='newplayer.html'>Add New Athlete</a></li>
-							</ul>
-						</li>
+						 
 						<li><a href="../../">Sign Out</a></li>
 					</ul>
 				</div>
@@ -442,7 +320,7 @@ var createInjury = function(name,day,month,year,overview) {
 	
 	<div class="main-container">
 		<div class="profile well">
-			<%= image_tag @athlete.pic.url(:medium) %>
+			<div class="img-container"><%= image_tag @athlete.pic.url(:medium) %></div>
 			<div class="profileinfo">
 				<h2><%= @athlete.firstname %> <%= @athlete.lastname %> </h2>
 				<h3> <%= @athlete.sport %> </h3>
@@ -454,10 +332,6 @@ var createInjury = function(name,day,month,year,overview) {
 			<div class="profilebox well">
 				<h3> Injury Overview</h3>
 				<p><%= @current_injury.overview %></p>
-			</div>
-			<div class='injurybar'>
-				<button id="healthybutton" class="btn btn-success">Mark as Healthy</button>
-				<button id="injurybutton" class="btn btn-danger">Add New Injury</button>
 			</div>
 			<div class='clear'></div>
 		</div>
@@ -471,30 +345,8 @@ var createInjury = function(name,day,month,year,overview) {
 		<div id="tab-content" class="tab-content">
 			<div class="tab-pane active" id="chart">
 				<div class="bottom-container">
-					<div class="exercise-select well span3">
-						<div class="choose-exercise gradientbg">
-			<h6> Select Different Body Area<i class="icon-search icon-white"></i></h6>
-		</div>
-						<div class="selectnewexercise">
-			<div class="newexercise">
-				<h5>Knee</h5>
-			</div>
-			<div class="newexercise">
-				<h5>Quad</h5>
-			</div>
-			<div class="newexercise">
-				<h5>Ankle</h5>
-			</div>
-			<div class="newexercise">
-				<h5>Shoulder</h5>
-			</div>
-			<div class="newexercise">
-				<h5>Calf</h5>
-			</div>
-		</div>
-						<div class="exercise-container"></div>
-					</div>
-					<div class="chart well droppable">
+					
+					<div style="margin-left: 140px" class="chart well droppable">
 		<div class="chart-header gradientbg">
 			<div class='title'> Exercise </div>
 			<div class='day'>
